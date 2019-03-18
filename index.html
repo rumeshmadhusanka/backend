@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Page</title>
+    <script src="test.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+<h1>Heading</h1>
+<form action="loginUser.php" method="post">
+    <input type="text" placeholder="Username" name="log_username" autocomplete="username">
+    <input type="password" placeholder="Password" name="log_password" autocomplete="password">
+    <input type="submit" >
+</form>
+
+<p id="a">Paragraph</p>
+
+
+<form>
+    <input type="text" placeholder="Username" id="reg_username">
+    <input type="tel" placeholder="mobile" id="reg_telephone">
+    <input type="password" placeholder="password" id="reg_password" autocomplete="password">
+    <input type="email" autocomplete="email" placeholder="reg_email">
+    <button onclick="addUser()">Sign Up</button>
+</form>
+<p id="b">Status</p>
+</body>
+</html>
+

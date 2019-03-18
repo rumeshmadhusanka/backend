@@ -2,19 +2,17 @@
 require_once 'common.php';
 require_once 'config.php';
 
-$_POST['name']="suasn";
-$_POST['password']="password";
-
 $connection = new PDO($dsn, $username, $password, $options);
-$name=$_POST['name'];
-$password=$_POST['password'];
+$name=$_POST['log_username'];
+$password=$_POST['log_password'];
+
 $passHash=hash("sha512",$password);
-$sql = "SELECT * FROM users where firstname = '$name' and password='$passHash'";
+
+$sql = "SELECT * FROM user where u_name = '$name' and u_password='$passHash'";
 $stmt=$connection->prepare($sql);
 $stmt->execute();
 $result=$stmt->fetchAll(PDO::FETCH_ASSOC);
-//$jsonRes=json_encode($result);
-//echo $jsonRes;
+
 if($result!=null){
     echo 'SUCCESS';
 }else{
