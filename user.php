@@ -2,6 +2,9 @@
 require_once 'common.php';
 require_once 'config.php';
 
+$_POST['name']="suasn";
+$_POST['password']="password";
+
 $connection = new PDO($dsn, $username, $password, $options);
 $name=$_POST['name'];
 $password=$_POST['password'];
