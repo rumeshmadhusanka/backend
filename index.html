@@ -17,12 +17,12 @@
 <p id="a">Paragraph</p>
 
 
-<form>
-    <input type="text" placeholder="Username" id="reg_username">
-    <input type="tel" placeholder="mobile" id="reg_telephone">
-    <input type="password" placeholder="password" id="reg_password" autocomplete="password">
-    <input type="email" autocomplete="email" placeholder="reg_email">
-    <button onclick="addUser()">Sign Up</button>
+<form action="userRegister.php" method="post">
+    <input type="text" placeholder="Username" name="reg_username">
+    <input type="tel" placeholder="mobile" name="reg_telephone">
+    <input type="password" placeholder="password" name="reg_password" autocomplete="password">
+    <input type="email" autocomplete="email" name="reg_email">
+    <input type="submit">
 </form>
 <p id="b">Status</p>
 </body>
