@@ -21,3 +21,4 @@ while ($row = $stmt->fetch()) {
     echo "</td></tr>";
 }
 echo "</table>";
+//header("Location: index.html");
