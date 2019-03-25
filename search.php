@@ -2,9 +2,9 @@
 require_once 'common.php';
 require_once 'config.php';
 
-$_POST['keyword']="body";
+$_GET['keyword']="body";
 $connection = new PDO($dsn, $username, $password, $options);
-$keyWord=$_POST['keyword'];
+$keyWord=$_GET['keyword'];
 
 $sql = "SELECT * FROM service WHERE service_name LIKE '%%$keyWord%%' LIMIT 10";
 $stmt=$connection->prepare($sql);
