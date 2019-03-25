@@ -13,4 +13,4 @@ $password=$_POST['password'];
 $passHash=hash("sha512",$password);
 $sql = "INSERT INTO {$tableName} (`firstname`, `lastname`, `password`) VALUES ({$firstName}, {$lastName}, {$password})";
 $stmt=$connection->query($sql);
-
+echo "Successfully addded user to the database";

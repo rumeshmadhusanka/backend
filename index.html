@@ -21,13 +21,25 @@
     <input type="text" placeholder="Username" name="reg_username">
     <input type="tel" placeholder="mobile" name="reg_telephone">
     <input type="password" placeholder="password" name="reg_password" autocomplete="password">
-    <input type="email" autocomplete="email" name="reg_email">
+    <input type="email" autocomplete="email" name="reg_email" >
     <input type="submit">
 </form>
 
 <h1>Search For a Service</h1>
 <form action="search.php" method="get">
     <input type="text" placeholder="Search" name="keyword">
+</form>
+
+<h1>Update Service Station</h1>
+<form action="updateServiceCenter.php" method="post" enctype="multipart/form-data">
+    <input type="text" placeholder="Name" name="s_name">
+    <input type="email" placeholder="email" name="s_email" >
+    <input type="password" placeholder="password" name="s_password" autocomplete="password">
+    <input type="text" placeholder="city" name="s_city" >
+    <input type="text" placeholder="No of Workers" name="s_workers">
+    <input type="file" placeholder="image" name="s_picture" id="s_picture">
+    <input type="submit">
+
 </form>
 <p id="b">Status</p>
 </body>
