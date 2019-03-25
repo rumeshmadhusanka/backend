@@ -2,7 +2,7 @@
 require_once 'common.php';
 require_once 'config.php';
 
-$_GET['keyword']="body";
+//$_GET['keyword']="body";
 $connection = new PDO($dsn, $username, $password, $options);
 $keyWord=$_GET['keyword'];
 
