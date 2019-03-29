@@ -4,12 +4,15 @@
     <meta charset="UTF-8">
     <title>Page</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+            integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+            crossorigin="anonymous"></script>
     <script src="test.js"></script>
 
 </head>
 <body>
 <h1>Login</h1>
-<form action="loginUser.php" method="post">
+<form action="loginUser.php" method="post" autocomplete="on">
     <input type="text" placeholder="Username" name="log_username" autocomplete="username">
     <input type="password" placeholder="Password" name="log_password" autocomplete="password">
     <input type="submit">
@@ -18,7 +21,7 @@
 <p id="a">Paragraph</p>
 
 <h1>Sign Up</h1>
-<form action="userRegister.php" method="post">
+<form action="userRegister.php" method="post" autocomplete="on">
     <input type="text" placeholder="Username" name="reg_username">
     <input type="tel" placeholder="mobile" name="reg_telephone">
     <input type="password" placeholder="password" name="reg_password" autocomplete="password">
