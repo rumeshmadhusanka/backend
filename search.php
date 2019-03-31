@@ -2,11 +2,15 @@
 require_once 'common.php';
 require_once 'config.php';
 
-//$_GET['keyword']="body";
+$_GET['keyword']="full";
 $connection = new PDO($dsn, $username, $password, $options);
-$keyWord=$_GET['keyword'];
+if (isset($_GET)) {
+    $keyWord=$_GET['keyword'];
+}elseif ($_GET['keyword']===''){
+    die();
+}
 
-$sql = "SELECT * FROM service WHERE service_name LIKE '%%$keyWord%%' LIMIT 10";
+$sql = "SELECT * FROM service WHERE service_name LIKE '%%$keyWord%%' LIMIT 3";
 $stmt=$connection->prepare($sql);
 $stmt->execute();
 //$result=$stmt->fetchAll(PDO::FETCH_ASSOC);
