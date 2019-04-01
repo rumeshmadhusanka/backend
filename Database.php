@@ -8,7 +8,8 @@ class Database
     static private $dbname = "service_me";
     static private $options = array(
         PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-        PDO::ATTR_PERSISTENT => true
+        PDO::ATTR_PERSISTENT => true, //Keep the connection cached
+        PDO::ATTR_EMULATE_PREPARES => false // Real prepared statements
     );
     static private $connection;
 
@@ -22,22 +23,23 @@ class Database
     /**
      * @return PDO
      */
-    public static function get_connection():PDO
+    public static function get_connection(): PDO
     {
         if (is_null(Database::$connection) or !is_resource(Database::$connection)) {
             $dsn = "mysql:host=" . self::$host . ";dbname=" . self::$dbname;
             try {
                 self::$connection = new PDO($dsn, Database::$username, Database::$password, Database::$options);
-            }catch (PDOException $e){
+            } catch (PDOException $e) {
                 echo 'Error connecting to database';
             }
         }
-            return self::$connection;
+        return self::$connection;
 
     }
 
-    public static function close_connection(){
-        self::$connection=null;
+    public static function close_connection()
+    {
+        self::$connection = null;
     }
 
 

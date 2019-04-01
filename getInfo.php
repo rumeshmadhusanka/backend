@@ -25,4 +25,4 @@ require_once 'config.php';
 ///
 ///
 
-echo '{name: John, age :12}';
+echo '{name: John age :12}';
