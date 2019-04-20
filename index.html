@@ -34,7 +34,7 @@
     <input type="text" placeholder="Search" name="keyword">
 </form>
 
-<h1>Update Service Station</h1>
+<h1>Add Service Station</h1>
 <form action="updateServiceCenter.php" method="post" enctype="multipart/form-data">
     <input type="text" placeholder="Name" name="s_name">
     <input type="email" placeholder="email" name="s_email" >
@@ -45,10 +45,17 @@
     <input type="submit">
 
 </form><br>
-<input type="text" placeholder="Search" id="search">
+<input type=" " placeholder="Search" id="search">
 <div id="searchResult"></div>
 <button id="ajaxCall">AJAX Call</button>
 <p id="b">Status</p>
+<h2>file upload</h2>
+<form action="upload.php" method="post" enctype="multipart/form-data">
+    Select image to upload:
+    <input type="file" name="fileToUpload" id="fileToUpload">
+    <input type="submit" value="Upload Image" name="submit">
+</form>
+
 </body>
 </html>
 
