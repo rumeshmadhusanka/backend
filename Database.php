@@ -42,6 +42,72 @@ class Database
         self::$connection = null;
     }
 
+    public static function run($sql, $bind=array()) {
+        $sql = trim($sql);
+
+        try {
+            $result = Database::get_connection()->prepare($sql);
+            $result->execute($bind);
+            return $result;
+        } catch (PDOException $e) {
+            echo $e->getMessage(); exit(1);
+        }
+    }
+
+    public static function read($table, $where="", $bind=array(), $fields="*") {
+        $sql = "SELECT " . $fields . " FROM " . $table;
+        if(!empty($where))
+            $sql .= " WHERE " . $where;
+        $sql .= ";";
+        $result = Database::run($sql, $bind);
+        $result->setFetchMode(PDO::FETCH_ASSOC);
+        $rows = array();
+        while($row = $result->fetch()) {
+            $rows[] = $row;
+        }
+        return $rows;
+    }
+    public static function update($table, $data, $where, $bind=array()) {
+        $fields = Database::filter($table, $data);
+        $fieldSize = sizeof($fields);
+        $sql = "UPDATE " . $table . " SET ";
+        for($f = 0; $f < $fieldSize; ++$f) {
+            if($f > 0)
+                $sql .= ", ";
+            $sql .= $fields[$f] . " = :update_" . $fields[$f];
+        }
+        $sql .= " WHERE " . $where . ";";
+        foreach($fields as $field)
+            $bind[":update_$field"] = $data[$field];
+
+        $result = Database::run($sql, $bind);
+        return $result->rowCount();
+    }
+    public static function delete($table, $where, $bind="") {
+        $sql = "DELETE FROM " . $table . " WHERE " . $where . ";";
+        $result = Database::run($sql, $bind);
+        return $result->rowCount();
+    }
+    private static function filter($table, $data) {
+        $driver = 'mysql';
+        if($driver == 'sqlite') {
+            $sql = "PRAGMA table_info('" . $table . "');";
+            $key = "name";
+        } elseif($driver == 'mysql') {
+            $sql = "DESCRIBE " . $table . ";";
+            $key = "Field";
+        } else {
+            $sql = "SELECT column_name FROM information_schema.columns WHERE table_name = '" . $table . "';";
+            $key = "column_name";
+        }
+        if(false !== ($list = Database::run($sql))) {
+            $fields = array();
+            foreach($list as $record)
+                $fields[] = $record[$key];
+            return array_values(array_intersect($fields, array_keys($data)));
+        }
+        return array();
+    }
 
 }
 
