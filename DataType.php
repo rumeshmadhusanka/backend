@@ -13,6 +13,13 @@ abstract class DataType
 
     abstract public function validate(): bool;
 
+    public function getValidationStatus(): bool
+    {
+        return $this->validationStatus;
+    }
+
+
+
 
 }
 
@@ -44,7 +51,7 @@ class Email extends DataType
         return $this->validationStatus;
     }
 }
-class Name extends DataType{
+class UserName extends DataType{
 
     public function validate(): bool
     {
