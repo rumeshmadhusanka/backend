@@ -2,7 +2,7 @@
 require_once 'Database.php';
 //----------------------------------
 echo json_encode(Database::read("user",'u_name = :name'
-    ,array(':name'=>'susan'),"u_id,u_name"));
+    ,array(':name'=>'susan'),"*"));
 //---------------------------------
 //echo Database::insert('user',array('u_email','u_name'),array('nyhu','vytybufyhbhy'));
 //-----------------------------------
