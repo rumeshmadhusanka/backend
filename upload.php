@@ -4,6 +4,7 @@
 //On success, will echo 'OK'
 //new name should be saved into the database
 require_once 'Database.php';
+$_SESSION['u_name']='susan';//get username from session
 $target_dir = "uploads/";
 $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 $uploadOk = 1;
@@ -44,6 +45,10 @@ if ($uploadOk == 0) {
 } else {
     if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $newTarget)) {
         //echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
+        Database::update('user',
+            array('u_profile_pic'=>$newTarget),
+            'u_name= :name',
+            array(':name'=>$_SESSION['u_name']));
         echo 'OK';
     } else {
         echo "Sorry, there was an error uploading your file.";
