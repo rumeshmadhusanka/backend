@@ -19,7 +19,8 @@ $result=Database::read("user",'u_name = :name and u_password= :pass',
 
 //display
 if($result!=null){
-    echo json_encode($result);
+    $_SESSION['user']=$result;
+    //echo json_encode($result);
 }else{
     echo 'FAILED';
 }
