@@ -13,18 +13,13 @@ $user=new UserName($name);
 $user->validate();
 $passHash=hash("sha512",$password);
 
-$sql = "SELECT * FROM user where u_name = '$name' and u_password='$passHash'";
-$stmt=$connection->prepare($sql);
-$stmt->execute();
-$result=$stmt->fetchAll(PDO::FETCH_ASSOC);
+//DB
+$result=Database::read("user",'u_name = :name and u_password= :pass',
+    array(':name'=>$name,':pass'=>$passHash),"*");
 
+//display
 if($result!=null){
-    echo 'SUCCESS';
-
-    foreach ($result as $row=>$col){
-        echo 'row:'.$row."  ".'col: '.$col;
-    }
+    echo json_encode($result);
 }else{
     echo 'FAILED';
-
 }
