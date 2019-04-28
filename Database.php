@@ -42,7 +42,8 @@ class Database
         self::$connection = null;
     }
 
-    public static function run($sql, $bind=array()) {
+    public static function run($sql, $bind = array())
+    {
         $sql = trim($sql);
 
         try {
@@ -50,53 +51,54 @@ class Database
             $result->execute($bind);
             return $result;
         } catch (PDOException $e) {
-            echo $e->getMessage(); exit(1);
+            echo $e->getMessage();
+            exit(1);
         }
     }
 
-    public static function read($table, $where="", $bind=array(), $fields="*") {
+    public static function read($table, $where = "", $bind = array(), $fields = "*"){
         $sql = "SELECT " . $fields . " FROM " . $table;
-        if(!empty($where))
+        if (!empty($where))
             $sql .= " WHERE " . $where;
         $sql .= ";";
         $result = Database::run($sql, $bind);
         $result->setFetchMode(PDO::FETCH_ASSOC);
         $rows = array();
-        while($row = $result->fetch()) {
+        while ($row = $result->fetch()) {
             $rows[] = $row;
         }
         return $rows;
     }
-    public static function update($table, $data, $where, $bind=array()) {
+
+    public static function update($table, $data, $where, $bind = array()){
         $fields = Database::filter($table, $data);
         $fieldSize = sizeof($fields);
         $sql = "UPDATE " . $table . " SET ";
-        for($f = 0; $f < $fieldSize; ++$f) {
-            if($f > 0)
+        for ($f = 0; $f < $fieldSize; ++$f) {
+            if ($f > 0)
                 $sql .= ", ";
             $sql .= $fields[$f] . " = :update_" . $fields[$f];
         }
         $sql .= " WHERE " . $where . ";";
-        foreach($fields as $field)
+        foreach ($fields as $field)
             $bind[":update_$field"] = $data[$field];
 
         $result = Database::run($sql, $bind);
         return $result->rowCount();
     }
-    public static function delete($table, $where, $bind="") {
+
+    public static function delete($table, $where, $bind = ""){
         $sql = "DELETE FROM " . $table . " WHERE " . $where . ";";
         $result = Database::run($sql, $bind);
         return $result->rowCount();
     }
-    public static function filter($table, $data) {
-        $driver = 'mysql';
-        if($driver == 'mysql') {
-            $sql = "DESCRIBE " . $table . ";";
-            $key = "Field";
-        }
-        if(false !== ($list = Database::run($sql))) {
+
+    public static function filter($table, $data){
+        $sql = "DESCRIBE " . $table . ";";
+        $key = "Field";
+        if (false !== ($list = Database::run($sql))) {
             $fields = array();
-            foreach($list as $record)
+            foreach ($list as $record)
                 $fields[] = $record[$key];
             return array_values(array_intersect($fields, array_keys($data)));
         }
@@ -104,4 +106,5 @@ class Database
     }
 
 }
-echo json_encode(Database::filter("user",array('u_name'=>'abhub','u_password'=>'bufgv','u_email'=>'bhi@hni.com')));
+
+echo json_encode(Database::filter("user", array('u_name' => 'abhub', 'u_password' => 'bufgv', 'u_email' => 'bhi@hni.com')));
