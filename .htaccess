@@ -1,0 +1,7 @@
+ErrorDocument 404 http://localhost/abc/404/
+
+RewriteEngine On
+RewriteBase /
+
+RewriteCond %{REQUEST_URI} ^/404/$
+RewriteRule ^(.*)$ 404.php
