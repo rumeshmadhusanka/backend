@@ -88,17 +88,11 @@ class Database
         $result = Database::run($sql, $bind);
         return $result->rowCount();
     }
-    private static function filter($table, $data) {
+    public static function filter($table, $data) {
         $driver = 'mysql';
-        if($driver == 'sqlite') {
-            $sql = "PRAGMA table_info('" . $table . "');";
-            $key = "name";
-        } elseif($driver == 'mysql') {
+        if($driver == 'mysql') {
             $sql = "DESCRIBE " . $table . ";";
             $key = "Field";
-        } else {
-            $sql = "SELECT column_name FROM information_schema.columns WHERE table_name = '" . $table . "';";
-            $key = "column_name";
         }
         if(false !== ($list = Database::run($sql))) {
             $fields = array();
@@ -110,5 +104,4 @@ class Database
     }
 
 }
-
-
+echo json_encode(Database::filter("user",array('u_name'=>'abhub','u_password'=>'bufgv','u_email'=>'bhi@hni.com')));
