@@ -92,8 +92,26 @@ class Database
         $result = Database::run($sql, $bind);
         return $result->rowCount();
     }
+    public static function insert($table,$columns ,$values):bool{
+        $sql="INSERT INTO ".$table." (";
+        $sql.=implode(",",$columns);
+        $sql .= ") VALUES (";
+        $places=array();
+        //create placeholders
+        foreach ($columns as $val){
+            $places[]="?";
+        }
+        $sql.= implode(',',$places);
+        $sql.=")";
+        try{
+        Database::run($sql,$values);
+        }catch (Exception $e){
+            return false;
+        }
+        return true;
+    }
 
-    public static function filter($table, $data){
+    private static function filter($table, $data){
         $sql = "DESCRIBE " . $table . ";";
         $key = "Field";
         if (false !== ($list = Database::run($sql))) {
@@ -107,4 +125,3 @@ class Database
 
 }
 
-echo json_encode(Database::filter("user", array('u_name' => 'abhub', 'u_password' => 'bufgv', 'u_email' => 'bhi@hni.com')));
