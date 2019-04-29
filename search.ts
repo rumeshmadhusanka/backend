@@ -3,7 +3,6 @@ $(function () {
 });
 
 function search() {
-    let inp = $('#b');
     let input = <string>($('#search').val());
     console.log("Bjbegan");
     $.ajax({
@@ -26,7 +25,7 @@ function search() {
             }
         },
         error: function (data) {
-            console.log("Error");
+            console.log("Error"+data);
         }
     });
 }
