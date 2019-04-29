@@ -6,7 +6,7 @@ $(function () {
 function getData() {
     let inp = $("#b");
     console.log("Bjbegan");
-    $.ajax({
+    $ .ajax({
         url: "getInfo.php",
         type: "GET",
         data:{name: 'susan'},
