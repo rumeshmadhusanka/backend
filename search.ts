@@ -4,23 +4,31 @@ $(function () {
 
 function search() {
     let input = <string>($('#search').val());
-    console.log("Bjbegan");
+    let endpoint = <HTMLElement><unknown>(document.getElementById("b"));
+    if(input==""){
+
+        endpoint.innerHTML = "";
+    }
     $.ajax({
         url: "search.php",
         type: "GET",
         data: {keyword: input},
         success: function (data) {
-            //console.log(data);
-
             if (data != 'NULL') {
-                let ans = JSON.parse(data);
-                let endpoint = <HTMLElement><unknown>(document.getElementById("b"));
+                let ans;
+                try {
+                    ans = JSON.parse(data);
+                }catch (e) {
+                    console.log("json parse error");
+                    return;
+                }
                 endpoint.innerHTML = "";
                 for (let i = 0; i < ans.length; i++) {
                     endpoint.innerHTML += (ans[i].service_name);
                 }
 
             } else {
+                endpoint.innerHTML = "";
                 console.log("NULL");
             }
         },
