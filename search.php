@@ -1,7 +1,7 @@
 <?php header('Access-Control-Allow-Origin: *');
 require_once 'Database.php';
 
-$_GET['keyword']="full";//del when actually using---------------------
+//$_GET['keyword']="full";//del when actually using---------------------
 $connection = Database::get_connection();
 if (isset($_GET)) {
     $keyWord=$_GET['keyword'];
