@@ -4,7 +4,7 @@
 //On success, will echo 'OK'
 //new name should be saved into the database
 require_once 'Database.php';
-$_SESSION['u_name']='susan';//get username from session
+$_SESSION['u_name']='jhon';//get username from session----------------------------
 $target_dir = "uploads/";
 $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 $uploadOk = 1;
