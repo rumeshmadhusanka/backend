@@ -5,20 +5,23 @@ $(function () {
 function search() {
     let input = <string>($('#search').val());
     let endpoint = <HTMLElement><unknown>(document.getElementById("b"));
-    if(input==""){
+    if (input == "") {
 
         endpoint.innerHTML = "";
     }
     $.ajax({
         url: "search.php",
         type: "GET",
-        data: {keyword: input},
+        data: {
+            keyword: input,
+            table: "service"
+        },
         success: function (data) {
             if (data != 'NULL') {
                 let ans;
                 try {
                     ans = JSON.parse(data);
-                }catch (e) {
+                } catch (e) {
                     console.log("json parse error");
                     return;
                 }
@@ -33,7 +36,7 @@ function search() {
             }
         },
         error: function (data) {
-            console.log("Error"+data);
+            console.log("Error" + data);
         }
     });
 }
