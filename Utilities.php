@@ -29,9 +29,9 @@ static public function html_escape($str):string {
     return htmlspecialchars($str);
 }
 
-static public function searchFromServices($keyWord){
+static public function searchFrom($table,$keyWord){
 //$sql = "SELECT * FROM service WHERE service_name LIKE '%%$keyWord%%' LIMIT 3";
-    $result=Database::read("service","service_name LIKE '%%$keyWord%%' LIMIT 5",
+    $result=Database::read($table,"service_name LIKE '%%$keyWord%%' LIMIT 5",
         array(),"*");
 
 //display
