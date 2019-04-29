@@ -10,7 +10,7 @@ if (isset($_GET)) {
 }
 
 //$sql = "SELECT * FROM service WHERE service_name LIKE '%%$keyWord%%' LIMIT 3";
-$result=Database::read("service","service_name LIKE '%%$keyWord%%' ",
+$result=Database::read("service","service_name LIKE '%%$keyWord%%' LIMIT 5",
     array(),"*");
 
 //display
