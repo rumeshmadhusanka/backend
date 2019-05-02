@@ -46,7 +46,7 @@ class Email extends DataType
 
     final public function validate(): bool
     {
-        if (!preg_match("/([w-]+@[w-]+.[w-]+)/",$this->value)){
+        if (!preg_match("/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/",$this->value)){
             $this->validationStatus=false;
         }
         else{
@@ -84,5 +84,24 @@ class Telephone extends DataType{
         return $this->validationStatus;
     }
 }
-$var=new Telephone("767261089");
-echo $var->validate();
+
+class City extends DataType{
+    public function validate(): bool
+    {
+        if (!preg_match("/^[a-z A-Z]*$/",$this->value)){
+
+            $this->validationStatus=false;
+        }
+        else{
+            $this->validationStatus=true;
+        }
+        return $this->validationStatus;
+    }
+}
+class Coordinate extends DataType{
+    public function validate(): bool
+    {
+        $this->validationStatus=true;
+        return true;//-----------------------------------------------------------
+    }
+}
