@@ -18,6 +18,10 @@ abstract class DataType
         return $this->validationStatus;
     }
 
+    public function getValue(){
+        return $this->value;
+    }
+
 
 
 
@@ -55,7 +59,7 @@ class UserName extends DataType{
 
     public function validate(): bool
     {
-        if (!preg_match("/^[a-zA-Z ]*$/",$this->value)){
+        if (!preg_match("/^[a-zA-Z0-9]+([_ -])?[a-zA-Z0-9]*$/",$this->value)){
 
             $this->validationStatus=false;
         }
@@ -65,3 +69,20 @@ class UserName extends DataType{
         return $this->validationStatus;
     }
 }
+
+class Telephone extends DataType{
+
+    public function validate(): bool{
+        $this->value="0".$this->value;
+        if (!preg_match("/^[0-9]{10}+$/",$this->value)){
+
+            $this->validationStatus=false;
+        }
+        else{
+            $this->validationStatus=true;
+        }
+        return $this->validationStatus;
+    }
+}
+$var=new Telephone("767261089");
+echo $var->validate();
