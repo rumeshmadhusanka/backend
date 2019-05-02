@@ -36,15 +36,15 @@
 </form>
 
 <h1>Add Service Station</h1>
-<form action="updateServiceCenter.php" method="post" enctype="multipart/form-data">
+<form action="addServiceCenter.php" method="post" enctype="multipart/form-data">
     <input type="text" placeholder="Name" name="s_name">
     <input type="email" placeholder="email" name="s_email" >
-    <input type="password" placeholder="password" name="s_password" autocomplete="password">
+    <input type="password" placeholder="password" name="s_password">
     <input type="text" placeholder="city" name="s_city" >
-    <input type="text" placeholder="No of Workers" name="s_workers">
-    <input type="file" placeholder="image" name="s_picture" id="s_picture">
+    <input type="tel" placeholder="telephone" name="s_telephone" id="s_telephone">
+    <input type="text" placeholder="latitude" name="s_latitude" id="s_latitude">
+    <input type="text" placeholder="longitude" name="s_longitude" id="s_longitude">
     <input type="submit">
-
 </form><br>
 <script type="text/javascript" src="search.js"></script>
 <input type="search" placeholder="Search" id="search">
