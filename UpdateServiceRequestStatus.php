@@ -5,7 +5,7 @@ require_once 'Database.php';
 require_once 'DataType.php';
 
 //get data-------------------------------------------------------------
-$rId = ['r_id'];
+$rId = $_GET['r_id'];
 $status = $_GET['status'];
 
 //update result
