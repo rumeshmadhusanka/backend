@@ -2,7 +2,7 @@
 //update users location every 2 seconds via calling this script.
 session_start();
 header('Access-Control-Allow-Origin: *');
-require_once 'Database.php';
+require_once 'common/Database.php';
 
 //get data
 $userId=1;//$_GET['u_id'];

@@ -1,8 +1,8 @@
 <?php
 session_start();
 header('Access-Control-Allow-Origin: *');
-require_once 'Database.php';
-require_once 'DataType.php';
+require_once '../common/Database.php';
+require_once '../common/DataType.php';
 
 //get data-------------------------------------------------------------
 $rId = $_GET['r_id'];
