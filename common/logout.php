@@ -1,4 +1,3 @@
-<?php session_unset();// remove all session variables
-// destroy the session
-session_destroy();
-header("Location: index.html");
+<?php
+require_once 'Utilities.php';
+Utilities::log_out();
