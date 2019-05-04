@@ -43,5 +43,19 @@ static public function searchFrom($table,$keyWord){
     }
 //header("Location: index.html");
 }
+
+static public function verifyLogIn($agent){
+    if ($agent=="USER"){
+        if (!isset($_SESSION['u_id'])){
+            die("User Not logged in");
+        }
+    }elseif ($agent=="SERVICE_CENTER"){
+        if (!isset($_SESSION['s_id'])){
+            die("Service Center Not logged in");
+        }
+    }else{
+        die("Unidentified agent");
+    }
+}
 }
 
