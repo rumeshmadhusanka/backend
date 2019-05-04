@@ -1,7 +1,7 @@
 <?php
 session_start();
 //send ajax post  request
-//on a SUCCESSFUL login this script will echo 'SUCCESSFUL'
+//on a SUCCESSFUL login this script will echo 'SUCCESS'
 //session vars will be created:  a whole json object of the user, u_id
 header('Access-Control-Allow-Origin: *');
 require_once '../common/Database.php';
@@ -36,7 +36,7 @@ if ($result != null) {
     $_SESSION['u_id'] = $result[0]['u_id'];
 //    echo json_encode($_SESSION['u_id']);
 //    echo json_encode($_SESSION['user']);
-    echo 'SUCCESSFUL';
+    echo 'SUCCESS';
 } else {
     echo 'FAILED';
 }
