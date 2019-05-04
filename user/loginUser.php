@@ -1,23 +1,26 @@
 <?php
 session_start();
+//send ajax post  request
+//on a SUCCESSFUL login this script will echo 'SUCCESSFUL'
+//session vars will be created:  a whole json object of the user, u_id
 header('Access-Control-Allow-Origin: *');
 require_once '../common/Database.php';
 require_once '../common/DataType.php';
 require_once '../common/Utilities.php';
 
 //get data
-$name="susan";//$_POST['log_username'];
+$email="susan@gmail.com";//$_POST['log_username'];
 $password="password";//$_POST['log_password'];
 
 //validate and prepare
-$user=new UserName($name);
-$user->validate();
+$email=new Email($email);
+$email->validate();
 $passHash=Utilities::encrypt($password);
 
 //DB
 try {
-    $result = Database::read("user", 'u_name = :name and u_password= :pass',
-        array(':name' => $user->getValue(), ':pass' => $passHash), "u_id,u_name,u_email,u_profile_pic");
+    $result = Database::read("user", 'u_email = :mail and u_password= :pass',
+        array(':mail' => $email->getValue(), ':pass' => $passHash), "u_id,u_name,u_tele,u_email,u_profile_pic");
 }catch (Error $e){
     echo 'Could not connect to database';
 }
@@ -27,7 +30,7 @@ if($result!=null){
     $_SESSION['u_id']=$result[0]['u_id'];
 //    echo json_encode($_SESSION['u_id']);
 //    echo json_encode($_SESSION['user']);
-
+echo 'SUCCESSFUL';
 }else{
     echo 'FAILED';
 }
