@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <!--&lt;!&ndash;===============================================================================================&ndash;&gt;-->
+    <!--<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>-->
+    <!--&lt;!&ndash;===============================================================================================&ndash;&gt;-->
+    <!--<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">-->
+    <!--&lt;!&ndash;===============================================================================================&ndash;&gt;-->
+    <!--<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">-->
+    <!--&lt;!&ndash;===============================================================================================&ndash;&gt;-->
+    <!--<link rel="stylesheet" type="text/css" href="fonts/Linearicons-Free-v1.0.0/icon-font.min.css">-->
+    <!--&lt;!&ndash;===============================================================================================&ndash;&gt;-->
+    <!--<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">-->
+    <!--&lt;!&ndash;===============================================================================================&ndash;&gt;-->
+    <!--<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">-->
+    <!--&lt;!&ndash;===============================================================================================&ndash;&gt;-->
+    <!--<link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">-->
+    <!--&lt;!&ndash;===============================================================================================&ndash;&gt;-->
+    <!--<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">-->
+    <!--&lt;!&ndash;===============================================================================================&ndash;&gt;-->
+    <!--<link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">-->
+    <!--&lt;!&ndash;===============================================================================================&ndash;&gt;-->
+
+    <script type="text/javascript" src="js/serviceProfile.js"></script>
+    <link rel="stylesheet" href="css/serviceProfile.css">
+    <link rel="stylesheet" type="text/css" href="css/util.css">
+    <link rel="stylesheet" type="text/css" href="css/navigation.css">
+
+
+</head>
+<body>
+
+<meta content='width=device-width, minimum-scale=0.81, maximum-scale=0.81, minimal-ui' name='viewport'>
+
+<div class="nav" >
+    <div class="logo">
+        <img src="images/NavLogo.png"  id="logoNav"  >
+    </div>
+    <div class="navMenu">
+        <ul>
+            <li><a href="#"><button class="btn type2">Home</button></a></li>
+            <li><a href="#"><button class="btn type2">About</button></a></li>
+            <li><a href="#"><button class="btn type2">Contact</button></a></li>
+            <!--<li><a href="#"><button class="btn type1">Join Now</button></a></li>-->
+            <!--<li><a href="#"><button class="btn type1">Sign in</button></a></li>-->
+        </ul>
+    </div>
+</div>
+
+
+<div class='content'>
+    <div class='tabs-v'>
+        <input checked id='rad1' name='rad' type='radio'>
+        <label data-text='Profile' for='rad1'></label>
+        <input id='rad2' name='rad' type='radio'>
+        <label data-text='Service' for='rad2'></label>
+        <!--<input id='rad3' name='rad' type='radio'>-->
+        <!--<label data-text='Work' for='rad3'></label>-->
+        <!--<input id='rad4' name='rad' type='radio'>-->
+        <!--<label data-text='Contact' for='rad4'></label>-->
+        <div class='tab-c'>
+            <div class='card'>
+                <div class="wrap-contact100">
+                    <div class="contact100-more flex-col-c-m"  >
+                        <div class="container-contact100-form-btn">
+                            <button class="contact100-form-btn">
+                                Sign Up
+                            </button>
+                            <button class="contact100-form-btn">
+                                Update
+                            </button>
+                        </div>
+
+                    </div>
+
+
+
+                    <form class="contact100-form validate-form">
+				        <!--<span class="contact100-form-title">-->
+					        <!--Profile-->
+				        <!--</span>-->
+                        <label class="label-input100" for="first-name">Tell us your Company Name *</label>
+                        <div class="wrap-input100 rs1-wrap-input100 validate-input" data-validate="Type Complete Name">
+                            <input id="first-name" class="input100" type="text" name="first-name" placeholder="First name">
+                            <span class="focus-input100"></span>
+                        </div>
+
+                        <label class="label-input100" for="email">Enter company email *</label>
+                        <div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+                            <input id="email" class="input100" type="text" name="email" placeholder="Eg. example@email.com">
+                            <span class="focus-input100"></span>
+                        </div>
+
+                        <label class="label-input100" for="phone">Enter contact number</label>
+                        <div class="wrap-input100">
+                            <input id="phone" class="input100" type="text" name="phone" placeholder="Eg. +94 7xx xxxxxx">
+                            <span class="focus-input100"></span>
+                        </div>
+
+                        <label class="label-input100" for="address">Enter company Address *</label>
+                        <div class="wrap-input100 validate-input"  data-validate="Type Correct Address">
+                            <input id="address" class="input100" type="text" name="address" placeholder="Eg. Address">
+                            <span class="focus-input100"></span>
+                        </div>
+
+                        <label class="label-input100" for="web-link">Include your Company WebSite Link</label>
+                        <div class="wrap-input100 rs1-wrap-input100 validate-input" data-validate="Include Correct Link">
+                            <input id="web-link" class="input100" type="text" name="web-link" placeholder="Website Link">
+                            <span class="focus-input100"></span>
+                        </div>
+
+
+                    </form>
+
+
+
+                </div>
+
+            </div>
+        </div>
+        <div class='tab-c under'>
+            <div class='card serviceAdd'>
+                <div class="addService">
+
+
+
+                    <h4>Select2 - Tokenization</h4>
+                    <select class="tokenizationSelect2" multiple="true">
+                        <option value="Lamborghini">Lamborghini</option>
+                        <option value="Bugatti">Bugatti</option>
+                        <option value="Ferrari">Ferrari</option>
+                        <option value="BMW">BMW</option>
+                        <option value="Mercedes-Benz">Mercedes-Benz</option>
+                    </select>
+
+
+                </div>
+                <div class="currentService"></div>
+
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!--&lt;!&ndash;===============================================================================================&ndash;&gt;-->
+<!--<script src="vendor/jquery/jquery-3.2.1.min.js"></script>-->
+<!--&lt;!&ndash;===============================================================================================&ndash;&gt;-->
+<!--<script src="vendor/animsition/js/animsition.min.js"></script>-->
+<!--&lt;!&ndash;===============================================================================================&ndash;&gt;-->
+<!--<script src="vendor/bootstrap/js/popper.js"></script>-->
+<!--<script src="vendor/bootstrap/js/bootstrap.min.js"></script>-->
+<!--&lt;!&ndash;===============================================================================================&ndash;&gt;-->
+<!--<script src="vendor/select2/select2.min.js"></script>-->
+<!--<script>-->
+    <!--$(".selection-2").select2({-->
+        <!--minimumResultsForSearch: 20,-->
+        <!--dropdownParent: $('#dropDownSelect1')-->
+    <!--});-->
+<!--</script>-->
+<!--&lt;!&ndash;===============================================================================================&ndash;&gt;-->
+<!--<script src="vendor/daterangepicker/moment.min.js"></script>-->
+<!--<script src="vendor/daterangepicker/daterangepicker.js"></script>-->
+<!--&lt;!&ndash;===============================================================================================&ndash;&gt;-->
+<!--<script src="vendor/countdowntime/countdowntime.js"></script>-->
+<!--&lt;!&ndash;===============================================================================================&ndash;&gt;-->
+<!--<script src="js/main.js"></script>-->
+<!--&lt;!&ndash; Global site tag (gtag.js) - Google Analytics &ndash;&gt;-->
+<!--<script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>-->
+<!--<script>-->
+    <!--window.dataLayer = window.dataLayer || [];-->
+    <!--function gtag(){dataLayer.push(arguments);}-->
+    <!--gtag('js', new Date());-->
+
+    <!--gtag('config', 'UA-23581568-13');-->
+<!--</script>-->
+
+<script>
+    $(document).ready(function(){
+        $(".tokenizationSelect2").select2({
+            placeholder: "Your favourite car", //placeholder
+            tags: true,
+            tokenSeparators: ['/',',',';'," "]
+        });
+    })
+
+</script>
+</body>
+</html>
