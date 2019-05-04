@@ -7,6 +7,7 @@ session_start();
 header('Access-Control-Allow-Origin: *');
 require_once '../common/Database.php';
 require_once '../common/DataType.php';
+require_once '../common/Utilities.php';
 
 //get data
 $name=$_POST['reg_username'];
@@ -26,7 +27,7 @@ if (!($userName->getValidationStatus() and $userEmail->getValidationStatus()
     and $userTele->getValidationStatus())){
     die("Details are not valid");
 }
-$passHash=hash("sha512",$password);
+$passHash=Utilities::encrypt($password);
 
 //DB
 try {
