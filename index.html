@@ -2,284 +2,197 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Page</title>
-    <script type="text/javascript" src="node_modules/jquery/dist/jquery.js"></script>
-    <!--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>-->
-    <!--    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"-->
-    <!--            integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="-->
-    <!--            crossorigin="anonymous"></script>-->
-    <!--    <script src="test.js"></script>-->
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Product Page Concept</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.2/TweenMax.min.js"></script>
+    <script src="js/index.js"></script>
 </head>
 <body>
-<h1>Login</h1>
-<form action="loginUser.php" method="post" autocomplete="on">
-    <input type="text" placeholder="Username" name="log_username" autocomplete="username">
-    <input type="password" placeholder="Password" name="log_password" autocomplete="password">
-    <input type="submit">
-</form>
 
-<p id="a">Paragraph</p>
+    <div class="nav" >
+        <div class="logo">
+            <img src="images/NavLogo.png"  id="logoNav"  >
+        </div>
+        <div class="navMenu">
+            <ul>
+                <li><a href="#"><button class="button type2">Home</button></a></li>
+                <li><a href="#"><button class="button type2">About</button></a></li>
+                <li><a href="#"><button class="button type2">Contact</button></a></li>
+                <li><a href="serviceProfile.html"><button class="button type1">Join Now</button></a></li>
+                <li><a href="signIn.html"><button class="button type1">Sign in</button></a></li>
+            </ul>
+        </div>
 
-<h1>Sign Up</h1>
-<form action="addUser.php" method="post" autocomplete="on">
-    <input type="text" placeholder="Username" name="reg_username">
-    <input type="tel" placeholder="mobile" name="reg_telephone">
-    <input type="password" placeholder="password" name="reg_password" autocomplete="password">
-    <input type="email" autocomplete="email" name="reg_email">
-    <input type="submit">
-</form>
-
-<h1>Search For a Service</h1>
-<form action="search.php" method="get">
-    <input type="text" placeholder="Search" name="keyword">
-</form>
-
-<h1>Add Service Station</h1>
-<form action="addServiceCenter.php" method="post" enctype="multipart/form-data">
-    <input type="text" placeholder="Name" name="s_name">
-    <input type="email" placeholder="email" name="s_email">
-    <input type="password" placeholder="password" name="s_password">
-    <input type="text" placeholder="city" name="s_city">
-    <input type="tel" placeholder="telephone" name="s_telephone" id="s_telephone">
-    <input type="text" placeholder="latitude" name="s_latitude" id="s_latitude">
-    <input type="text" placeholder="longitude" name="s_longitude" id="s_longitude">
-    <input type="submit">
-</form>
-<br>
-<!--<script type="text/javascript" src="search.js"></script>-->
-<h2>Auto complete search box for finding services</h2>
-<form autocomplete="off" action="">
-    <div class="autocomplete" style="width:300px">
-        <input type="text" placeholder="Search" name="keyword" id="search">
     </div>
-<!--    css  and js scripts for the auto complete-->
-    <script type="text/css">
-        * {
-            box-sizing: border-box;
-        }
 
-        body {
-            font: 16px Arial;
-        }
 
-        .autocomplete {
-            /*the container must be positioned relative:*/
-            position: relative;
-            display: inline-block;
-        }
+<div class="container">
+    <div class="left">
+        <div class="containerSliderLeft">
+            <div class="slideshow_wrapperLeft">
+                <div class="slideshowLeft">
+                    <div class="slide_one slideLeft">
+                        <img src="images/Service/Painting.jpg" >
+                    </div>
 
-        input {
-            border: 1px solid transparent;
-            background-color: #f1f1f1;
-            padding: 10px;
-            font-size: 16px;
-        }
+                    <div class="slide_two slideLeft">
+                        <img src="images/Service/fullService.jpg" >
+                    </div>
 
-        input[type=text] {
-            background-color: #f1f1f1;
-            width: 100%;
-        }
+                    <div class="slide_three slideLeft">
+                        <img src="images/Service/repair.jpg" >
+                    </div>
+                    <div class="slide_four slideLeft">
+                        <img src="images/Service/full-service-car-wash.jpg" >
+                    </div>
 
-        input[type=submit] {
-            background-color: DodgerBlue;
-            color: #fff;
-        }
+                    <div class="slide_five slideLeft">
 
-        .autocomplete-items {
-            position: absolute;
-            border: 1px solid #d4d4d4;
-            border-bottom: none;
-            border-top: none;
-            z-index: 99;
-            /*position the autocomplete items to be the same width as the container:*/
-            top: 100%;
-            left: 0;
-            right: 0;
-        }
+                        <img src="images/Service/carCheckup-.jpg" >
+                    </div>
+                </div>
+            </div>
+        </div>
 
-        .autocomplete-items div {
-            padding: 10px;
-            cursor: pointer;
-            background-color: #fff;
-            border-bottom: 1px solid #d4d4d4;
-        }
+            <div class="servicesText">
+                <h1>Want to find best service station near you?</h1>
+                <a href="signIn.html" >
+                <div class="wrapper-inner-tab-backgrounds-third">
+                    <div class="sim-button button28">
+                        <span style="color: black">Find Service Center</span></div>
+                </div>
+                </a>
+            </div>
 
-        .autocomplete-items div:hover {
-            /*when hovering an item:*/
-            background-color: #e9e9e9;
-        }
+    </div>
+    <div class="right">
+        <div class="containerSlider">
+            <div class="slideshow_wrapper">
+                <div class="slideshow">
+                    <div class="slide_one slide">
+                        <img src="images/Accident%20Repair/Accident.png" >
+                    </div>
 
-        .autocomplete-active {
-            /*when navigating through the items using the arrow keys:*/
-            background-color: DodgerBlue !important;
-            color: #ffffff;
-        }
-    </script>
-    <script type="text/javascript">
-        function autocomplete(inp, arr) {
-            /*the autocomplete function takes two arguments,
-            the text field element and an array of possible autocompleted values:*/
-            var currentFocus;
-            /*execute a function when someone writes in the text field:*/
-            inp.addEventListener("input", function (e) {
-                var a, b, i, val = this.value;
-                /*close any already open lists of autocompleted values*/
-                closeAllLists();
-                if (!val) {
-                    return false;
-                }
-                currentFocus = -1;
-                /*create a DIV element that will contain the items (values):*/
-                a = document.createElement("DIV");
-                a.setAttribute("id", this.id + "autocomplete-list");
-                a.setAttribute("class", "autocomplete-items");
-                /*append the DIV element as a child of the autocomplete container:*/
-                this.parentNode.appendChild(a);
-                /*for each item in the array...*/
-                for (i = 0; i < arr.length; i++) {
-                    /*check if the item starts with the same letters as the text field value:*/
-                    if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
-                        /*create a DIV element for each matching element:*/
-                        b = document.createElement("DIV");
-                        /*make the matching letters bold:*/
-                        b.innerHTML = "<strong>" + arr[i].substr(0, val.length) + "</strong>";
-                        b.innerHTML += arr[i].substr(val.length);
-                        /*insert a input field that will hold the current array item's value:*/
-                        b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
-                        /*execute a function when someone clicks on the item value (DIV element):*/
-                        b.addEventListener("click", function (e) {
-                            /*insert the value for the autocomplete text field:*/
-                            inp.value = this.getElementsByTagName("input")[0].value;
-                            /*close the list of autocompleted values,
-                            (or any other open lists of autocompleted values:*/
-                            closeAllLists();
-                        });
-                        a.appendChild(b);
-                    }
-                }
-            });
-            /*execute a function presses a key on the keyboard:*/
-            inp.addEventListener("keydown", function (e) {
-                var x = document.getElementById(this.id + "autocomplete-list");
-                if (x) x = x.getElementsByTagName("div");
-                if (e.keyCode == 40) {
-                    /*If the arrow DOWN key is pressed,
-                    increase the currentFocus variable:*/
-                    currentFocus++;
-                    /*and and make the current item more visible:*/
-                    addActive(x);
-                } else if (e.keyCode == 38) { //up
-                    /*If the arrow UP key is pressed,
-                    decrease the currentFocus variable:*/
-                    currentFocus--;
-                    /*and and make the current item more visible:*/
-                    addActive(x);
-                } else if (e.keyCode == 13) {
-                    /*If the ENTER key is pressed, prevent the form from being submitted,*/
-                    e.preventDefault();
-                    if (currentFocus > -1) {
-                        /*and simulate a click on the "active" item:*/
-                        if (x) x[currentFocus].click();
-                    }
-                }
-            });
+                    <div class="slide_two slide">
+                        <img src="images/Accident%20Repair/FirstCaarAcident.png" >
+                    </div>
 
-            function addActive(x) {
-                /*a function to classify an item as "active":*/
-                if (!x) return false;
-                /*start by removing the "active" class on all items:*/
-                removeActive(x);
-                if (currentFocus >= x.length) currentFocus = 0;
-                if (currentFocus < 0) currentFocus = (x.length - 1);
-                /*add class "autocomplete-active":*/
-                x[currentFocus].classList.add("autocomplete-active");
-            }
+                    <div class="slide_three slide">
+                        <img src="images/Accident%20Repair/carRepair.png" >
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="servicesTextRight" >
+            <h1>Accident?</h1>
+            <h2>OR</h2>
+            <h1>Breakdown?</h1>
+            <h1>Need Recovery Fast?</h1>
+            <h1>Hard to find Garage?</h1>
+            <div class="wrapper-inner-tab-backgrounds-third"><div class="sim-button button28"><span style="color: black">Find the nearest Garage</span></div></div>
 
-            function removeActive(x) {
-                /*a function to remove the "active" class from all autocomplete items:*/
-                for (var i = 0; i < x.length; i++) {
-                    x[i].classList.remove("autocomplete-active");
-                }
-            }
+        </div>
+    </div>
 
-            function closeAllLists(elmnt) {
-                /*close all autocomplete lists in the document,
-                except the one passed as an argument:*/
-                var x = document.getElementsByClassName("autocomplete-items");
-                for (var i = 0; i < x.length; i++) {
-                    if (elmnt != x[i] && elmnt != inp) {
-                        x[i].parentNode.removeChild(x[i]);
-                    }
-                }
-            }
 
-            /*execute a function when someone clicks in the document:*/
-            document.addEventListener("click", function (e) {
-                closeAllLists(e.target);
-            });
-        }
+    <div class="left-bottom">
+        <p>Service Me, wherever you go</p>
 
-        var services = [];//----------------------------------------------------
-        $(function () {
-            $("#search").on('keyup', search);
-            console.log("start");
-        });
-        function search() {
-            var input = ($('#search').val());
-            var endpoint = services;
-            services=[];
-            console.log("inside search");
-            if (input == "") {
-                console.log("empty query");
-                endpoint.innerHTML = "";
-            }
-            $.ajax({
-                url: "search.php",
-                type: "GET",
-                data: {
-                    keyword: input,
-                    table: "service"
-                },
-                success: function (data) {
-                    console.log("Ajax sucess");
-                    if (data != 'NULL') {
-                        var ans = void 0;
-                        try {
-                            ans = JSON.parse(data);
-                        }
-                        catch (e) {
-                            console.log("json parse error");
-                            return;
-                        }
-                        endpoint.innerHTML = "";
-                        for (var i = 0; i < ans.length; i++) {
-                            endpoint.push(ans[i].service_name);
-                        }
-                    }
-                    else {
-                        endpoint=[];
-                        console.log("NULL");
-                    }
-                },
-                error: function (data) {
-                    console.log("Error" + data);
-                }
-            });
-        }
+    </div>
+    <!--<a href="">-->
+        <!--<div class="addServiceCenter">-->
 
-        autocomplete(document.getElementById("search"), services);
-    </script>
-</form>
-<p id="b">Status</p>
+        <!--<h3 class="buttonAddService">-->
+            <!--<img class="imageService" src="images/serviceCenter.png"  height="100px" width="150px"> Add new <br> Service Station-->
+        <!--</h3>-->
 
-<h2>file upload</h2>
-<form action="upload.php" method="post" enctype="multipart/form-data">
-    Select image to upload:
-    <input type="file" name="fileToUpload" id="fileToUpload">
-    <input type="submit" value="Upload Image" name="submit">
-</form>
+
+
+        <!--</div>-->
+    <!--</a>-->
+
+
+
+    <div class="product" id="product">
+        <img class="rotate45 reponsive"  src="images/servicemeLogo.png" alt="drone" id="logo" border="2"  >
+    </div>
+
+    <div class="media">
+        <ul>
+            <li><i class="fa fa-facebook"></i></li>
+            <li><i class="fa fa-instagram"></i></li>
+            <li><i class="fa fa-twitter"></i></li>
+        </ul>
+    </div>
+
+</div>
+<script type="text/javascript">
+    TweenMax.from(".right", 1.6, {
+        delay: 0.6,
+        width: 0,
+        ease: Expo.easeInOut
+    });
+
+    TweenMax.from(".left-bottom", 2, {
+        delay: 2.8,
+        opacity: 0,
+        y: 20,
+        ease: Expo.easeInOut
+    });
+    TweenMax.from(".media", 2, {
+        delay: 2.8,
+        opacity: 0,
+        y: 20,
+        ease: Expo.easeInOut    });
+    TweenMax.from(".containerSlider", 2, {
+        delay: 0.8,
+        opacity: 0,
+        y: 20,
+        ease: Expo.easeInOut
+    });
+    TweenMax.from(".servicesTextRight", 2, {
+        delay: 0.8,
+        opacity: 0,
+        y: 20,
+        ease: Expo.easeInOut
+    });
+
+    TweenMax.from(".containerSliderLeft", 2, {
+        delay: 0.8,
+        opacity: 0,
+        y: 20,
+        ease: Expo.easeInOut
+    });
+    TweenMax.from(".servicesText", 2, {
+        delay: 0.8,
+        opacity: 0,
+        y: 20,
+        ease: Expo.easeInOut
+    });
+    TweenMax.from(".product img", 3, {
+        delay: 2,
+        scale: 0,
+        ease: Expo.easeInOut
+    });
+
+    TweenMax.to(".product img", 3, {
+        delay: 2,
+        scale: 1,
+        ease: Expo.easeInOut
+    });
+    TweenMax.from(".nav", 3, {
+        delay: 2.8,
+        opacity: 0,
+        // width: 0,
+        ease: Expo.easeInOut
+    });
+</script>
+
 
 </body>
 </html>
-
