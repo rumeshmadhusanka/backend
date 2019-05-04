@@ -5,8 +5,8 @@ require_once 'Database.php';
 require_once 'DataType.php';
 
 //get data-------------------------------------------------------------
-$sId = 1;//$_SESSION['s_id'];
-$status = "DONE";//$_GET['status'];
+$sId = $_SESSION['s_id'];
+$status = $_GET['status'];//////////PENDING,DONE,CANCELLED
 //find pending
 $result= Database::read("service_request", "s_id = :sId and r_status = :status"
     , array(':sId' => $sId, ':status' => $status), "*");
