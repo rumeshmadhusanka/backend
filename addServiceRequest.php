@@ -4,7 +4,7 @@ header('Access-Control-Allow-Origin: *');
 require_once 'Database.php';
 require_once 'DataType.php';
 
-//get data
+//get data-------------------------------------------------------------
 $serviceId = 8;//$_GET['service_id'];
 $description = "description";//$_GET['r_description'];
 $latitude = "3.3434";//$_GET['r_latitude'];
