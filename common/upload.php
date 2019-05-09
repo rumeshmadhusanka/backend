@@ -3,9 +3,10 @@
 //'uploads' dir should exist
 //On success, will echo 'OK'
 //new name should be saved into the database
+session_start();
 require_once 'Database.php';
-$_SESSION['u_name']='jhon';//get username from session----------------------------
-$target_dir = "uploads/";
+//$_SESSION['u_id']='susan';//get username from session----------------------------
+$target_dir = "../uploads/";
 $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 $uploadOk = 1;
 $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
@@ -41,14 +42,15 @@ $newFileName=uniqid('uploaded-');
 $newTarget=$target_dir .$newFileName.".".$imageFileType;  ////////////new full name plus path
 if ($uploadOk == 0) {
     echo "Sorry, your file was not uploaded.";
+    die();
 // if everything is ok, try to upload file
 } else {
     if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $newTarget)) {
         //echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
         Database::update('user',
             array('u_profile_pic'=>$newTarget),
-            'u_name= :name',
-            array(':name'=>$_SESSION['u_name']));
+            'u_id= :id',
+            array(':id'=>$_SESSION['u_id']));
         echo 'OK';
     } else {
         echo "Sorry, there was an error uploading your file.";
