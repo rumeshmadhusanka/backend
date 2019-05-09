@@ -2,6 +2,7 @@
 //get the data from web page via ajax.
 session_start();
 header('Access-Control-Allow-Origin: *');
+header('Content-type:JSON');
 require_once '../common/Database.php';
 require_once '../common/DataType.php';
 require_once '../common/Utilities.php';

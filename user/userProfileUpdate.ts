@@ -3,11 +3,40 @@ $(function () {
     $("#userName").on("keyup", checkUserName);
     $("#tele").on("keyup", checkTele);
     $("#email").on("keyup", checkEmail);
-    $("#profilePicUpload").on("change", checkProfilePic);
+    //$("#profilePicUpload").on("change", checkProfilePic);
     $("#password2").on("keyup", checkPasswordEqual);
-    $("#upload").on("click",uploadProfilePic);
+    $("#upload").on("click", uploadData);
+    $("#picForm").on('submit', (function (e) {
+        console.log("in event method");
+        e.preventDefault();
+        $.ajax({
+            url: "../common/upload.php",
+            type: "POST",
+            data: new FormData(<HTMLFormElement>this),
+            contentType: false,
+            cache: false,
+            processData: false,
+            success: function (data) {
+                //$("#targetLayer").html(data);
+                console.log("Profile pic ajax success");
+                $.ajax({
+                    url: "userGetProfileInfo.php", method: "GET"
+                }).then(function (dataEx) {
+                    let data = JSON.parse(dataEx);
+                    let person = data[0];
+                    $('#profilePic').attr('src',  person.u_profile_pic);
+                    console.log("Get new pic from database");
+                })
+            },
+            error: function () {
+                console.log("Profile pic upload req failed");
+            }
+        });
+    }))
 
-});
+
+})
+;
 
 function loadDataFromServer(): boolean {
     let success: boolean = false;
@@ -24,7 +53,7 @@ function loadDataFromServer(): boolean {
         // @ts-ignore
         document.getElementById("email").value = (person.u_email).toString();
         // @ts-ignore
-        $('#profilePic').attr('src', "../" + person.u_profile_pic);
+        $('#profilePic').attr('src', person.u_profile_pic);
         success = true;
     });
     return success;
@@ -126,7 +155,6 @@ function uploadData() {
 //todo replace the alerts with something proper
 
 }
-//todo upload profile picture part
-function uploadProfilePic() {
 
-}
+//todo upload profile picture part
+
