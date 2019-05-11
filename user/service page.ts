@@ -44,14 +44,19 @@ function getServices() {
 function findServiceStation() {
     let service = (<HTMLInputElement>document.getElementById("search")).value;
     console.log("Keyword: " + service);
+    let form = new FormData();
+    form.append("keyword", service);
+    form.append("table", "service");
     if (service != "") {
-        $.ajax({
-            url: "searchAStation.php",
-            data: {
-                keyword: service,
-                table: "service"
-            }
+        fetch("searchAStation.php",
+            {
+                method: "POST",
+                body: form
+            }).then(function (data) {
+            //console.log(data);
+            return data.text();
         }).then(function (data) {
+            //console.log(data);
             let stations = JSON.parse(data);
             console.log(stations);
             let endpoint = $("#serviceStationSelection2");
@@ -96,7 +101,7 @@ function addServiceByStation() {
         }).catch(function (data) {
             console.error(data);
         })
-    }else {
+    } else {
         alert("Please select a service ");//todo replace alert
     }
 }
