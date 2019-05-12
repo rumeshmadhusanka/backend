@@ -5,7 +5,7 @@ header('Content-type:JSON');
 require_once '../common/Database.php';
 require_once '../common/DataType.php';
 require_once '../common/Utilities.php';
-
+//$_POST['s_id']=30;
 //no login check
 //DB
 try{
