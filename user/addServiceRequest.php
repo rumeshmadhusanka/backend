@@ -6,19 +6,19 @@ require_once '../common/DataType.php';
 require_once '../common/Utilities.php';
 
 ////Test data
-//$_SESSION['u_id']=1;
-//$_GET['service_id']=8;
-//$_GET['r_description']="description";
-//$_GET['r_latitude']="3.3434";
-//$_GET['r_longitude']="3.676";
+$_SESSION['u_id']=2;
+//$_POST['service_id']=8;
+//$_POST['r_description']="description";
+//$_POST['r_latitude']="3.3434";
+//$_POST['r_longitude']="3.676";
 
 Utilities::verifyLogIn("USER");
 
 //get data-------------------------------------------------------------
-$serviceId = $_GET['service_id'];
-$description = $_GET['r_description'];
-$latitude = $_GET['r_latitude'];
-$longitude = $_GET['r_longitude'];
+$serviceId = $_POST['service_id'];
+$description = $_POST['r_description'];
+$latitude = $_POST['r_latitude'];
+$longitude = $_POST['r_longitude'];
 $uId = $_SESSION['u_id'];
 
 //DB
