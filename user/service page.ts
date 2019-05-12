@@ -108,6 +108,9 @@ function addServiceByStation() {
 }
 
 function showUserRegServices() {
+    if (!window.navigator.onLine) {
+        return;
+    }
     let head = `<tr>
             <td>Service Station</td>
             <td>Service Name</td>
@@ -118,10 +121,6 @@ function showUserRegServices() {
         </tr>`;
     let pending = $("#pendingServices");
     let done = $("#doneServices");
-    pending.empty();
-    done.empty();
-    pending.append(head);
-    done.append(head);
     let station = "";
     let service = "";
     let cost = "";
@@ -129,49 +128,20 @@ function showUserRegServices() {
     let status = "";
     let time = "";
     let tele = "";
-    fetch("getUserRegServices.php", {
-        method: 'GET',
-    }).then(function (data) {
-        return data.text();
-    }).catch(function (data) {
+    fetch("getReqDetailsCombined.php")
+        .then(function (data) {
+            return data.text();
+        }).catch(function (data) {
         console.log(data);
     }).then(function (textData) {
-        let res = JSON.parse(<string>textData);
-        //console.log("1st fetch: ");
-        console.log(res);
-        for (let i = 0; i < res.length; i++) {
-            description = res[i].r_description;
-            status = res[i].r_status;
-            time = res[i].r_submit_time;
-            console.log(res[i].s_id);
-            let formStation = new FormData();
-            formStation.append("s_id", res[i].s_id);
-            fetch("getServiceStations.php", {
-                method: "POST",
-                body: formStation
-            }).then(function (data) {
-                return data.text();
-            }).then(function (textData) {
-                let stationData = JSON.parse(<string>textData)[0];
-                station = stationData.s_name;
-                tele = stationData.s_telephone;
-                //console.log(station);
-                //console.log(res[i].service_id);
-                let formService = new FormData();
-                formService.append("service_id", res[i].service_id);
-                fetch("getServiceDetails.php", {
-                    method: "POST",
-                    body: formService
-                }).then(function (data) {
-                    return data.text();
-                }).then(function (textData) {
-                    let serviceData = JSON.parse(<string>textData);
-                    //console.log("3rd fetch: "+parsedData[0].service_name);
-                    service = serviceData[0].service_name;
-                    cost = serviceData[0].cost;
-                    //console.log("cost"+parsedData[0].cost);
-                    //All data is fetched
-                    let template = `<tr>
+        let details = JSON.parse(<string>textData);
+        pending.empty();
+        done.empty();
+        pending.append(head);
+        done.append(head);
+        //for loop
+        for (let i = 0; i < details.length; i++) {
+            let template = `<tr>
             <td>${station}</td>
             <td>${service}</td>
             <td>${cost}</td>
@@ -179,19 +149,21 @@ function showUserRegServices() {
             <td>${time}</td>
             <td><a href="${tele}">${tele}</a></td>
         </tr>`;
-                    if (res[i].r_status == "PENDING") {
-                        pending.append(template);
-                    } else if (res[i].r_status == "DONE") {
-                        done.append(template);
-                    }
-                })
-            });
+            station=details[i].s_name+" :"+details[i].s_city;
+            service =details[i].service_name;
+            cost=details[i].cost;
+            description=details[i].r_description;
+            time=details[i].r_submit_time;
+            status=details[i].r_status;
+            tele=details[i].s_telephone;
+            if (status === "PENDING"){
+                pending.append(template);
+            }else if (status === "DONE") {
+                done.append(template);
+            }
 
         }
-    }).then(function () {
 
-    });
-
-    //for
+    })
 
 }
