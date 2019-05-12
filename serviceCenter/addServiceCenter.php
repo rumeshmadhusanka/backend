@@ -13,7 +13,7 @@ $name=$_POST['s_name'];
 $email=$_POST['s_email'];
 $password=$_POST['s_password'];
 $city=$_POST['s_city'];
-$telephone=$_POST['regs_telephone_telephone'];
+$telephone=$_POST['s_telephone'];
 $latitude=$_POST['s_latitude'];
 $longitude=$_POST['s_longitude'];
 
