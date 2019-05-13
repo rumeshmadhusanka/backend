@@ -24,7 +24,7 @@ $(function () {
                 }).then(function (dataEx) {
                     let data = JSON.parse(dataEx);
                     let person = data[0];
-                    $('#profilePic').attr('src',  person.u_profile_pic);
+                    $('#profilePic').attr('src', person.u_profile_pic);
                     console.log("Get new pic from database");
                 })
             },
@@ -34,6 +34,7 @@ $(function () {
         });
     }))
 
+    $("#deleteProfileBtn").on('click', deleteUserProfile)
 
 })
 ;
@@ -158,3 +159,26 @@ function uploadData() {
 
 //todo upload profile picture part
 
+ function deleteUserProfile() {
+    console.log("Trying to delete");
+    if (window.confirm("Are you sure you want to delete your profile? ")) { //todo replace confirm
+        let email= (<HTMLInputElement>document.getElementById("deleteEmail")).value;
+        let password=(<HTMLInputElement>document.getElementById("deletePassword")).value;
+        let form =new FormData();
+        form.append("email",email);
+        form.append("password",password);
+        let result = fetch("deleteUserProfile.php", {
+            method: "POST",
+            body:form
+        });
+
+        let text=result.then(function (data) {
+            return data.text();
+        });
+        text.then(function (data) {
+            console.log(data);
+                alert(data);//todo replace alert
+        });
+
+    }
+}
