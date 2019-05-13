@@ -7,11 +7,6 @@ let row="<tr>\n" +
     "            <td>Requested time</td>\n" +
     "            <td>Action</td>\n" +
     "        </tr>";
-function getFormData(status:string) {
-    $.ajax({url:"getServiceRequests.php",method:"GET",data:{status:status}}).then(function (data) {
-        Iterator
-    })
-}
 class Iterator<T>{
     private readonly collection:T[];
     private index:number;
