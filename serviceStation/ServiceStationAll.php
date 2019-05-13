@@ -383,10 +383,28 @@ function addService()
 
 function changeServiceAvailability()
 {
-
+    Utilities::verifyLogIn("SERVICE_CENTER");
+    $sid = $_SESSION['s_id'];
+    $availability = $_POST['availability'];
+    try{
+        Database::update("service","availability = :val",
+            array(':val'=>$availability));
+        echo "SUCCESS";
+    }catch (Error $e){
+        echo "ERROR";
+    }
 }
 
 function removeService()
 {
-
+    Utilities::verifyLogIn("SERVICE_CENTER");
+    $sid = $_SESSION['s_id'];
+    $serviceId = $_POST['serviceId'];
+    try{
+        Database::delete("service","s_id = :sid AND service_id = :serviceId",
+            array(':sid'=>$sid,':serviceId'=>$serviceId));
+        echo "SUCCESS";
+    }catch (Error $e){
+        echo "ERROR";
+    }
 }
