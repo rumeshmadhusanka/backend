@@ -12,7 +12,7 @@ require_once '../common/Utilities.php';
 //$_POST['log_email']="susan@gmail.com";
 //$_POST['log_password']="password";
 
-if (!isset($_POST)){
+if (!isset($_POST)) {
     die("Variables not defined");
 }
 //get data
@@ -37,9 +37,10 @@ if ($result != null) {
     $_SESSION['user'] = $result;
     $_SESSION['u_id'] = $result[0]['u_id'];
 //    echo json_encode($_SESSION['u_id']);
-   //echo json_encode($_SESSION['user']);
+    //echo json_encode($_SESSION['user']);
     header("Location: userProfileUpdate.html");
     echo 'SUCCESS';
 } else {
-    echo 'FAILED';
+    echo '<script type=text/javascript>setTimeout(()=>{window.location.replace("../signIn.html")},10);
+            alert("Email or password is wrong")</script>';
 }
