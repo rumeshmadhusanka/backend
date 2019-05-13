@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>Profile Edit</title>
+    <meta name="generator" content="Bootply"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="Bootstrap User information form snippet with timezones example."/>
+    <link href="../node_modules/mdbootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../node_modules/font-awesome/css/font-awesome.css" type="text/css" rel="stylesheet">
+    <script type="text/javascript" src="../node_modules/jquery/dist/jquery.js"></script>
+
+    <!-- CSS code from Bootply.com editor -->
+
+    <style type="text/css">
+        /* CSS used here will be applied after bootstrap.css */
+    </style>
+</head>
+<body>
+<!--===============================================================================-->
+<script type="text/javascript" src="serviceProfileUpdate.js"></script>
+<div class="container">
+    <h1>Edit Profile</h1>
+    <hr>
+    <div class="row">
+        <!-- left column -->
+        <div class="col-md-3">
+            <div class="text-center">
+                <img src="" class="avatar img-circle" alt="avatar" id="profilePic">
+                <!--                    todo add css to image to control overflow-->
+                <h6>Upload a different photo...</h6>
+                <form id="picForm" name="photo" enctype="multipart/form-data">
+                    <input type="file" class="form-control" id="profilePicUpload" name="fileToUpload">
+                    <input class="btn btn-primary" type="button" style="visibility: visible"
+                           value="Change Profile Picture" id="picSubmitBtn">
+                </form>
+            </div>
+        </div>
+
+        <!-- edit form column -->
+        <div class="col-md-9 personal-info">
+            <div class="alert alert-danger alert-dismissable" id="alertBox" style="visibility:visible">
+                <a class="panel-close close" data-dismiss="alert">×</a>
+                <i class="fa fa-coffee"></i>
+                <p id="alertText">This is an <strong>.alert</strong>. Use this to show important messages to the user.
+                </p>
+            </div>
+            <h3>Company info</h3>
+            <!--form begins-->
+            <form class="form-horizontal" role="form">
+                <div class="form-group">
+                    <label class="col-md-3 control-label">Username:</label>
+                    <div class="col-md-8">
+                        <input class="form-control" type="text" value="janeuser" id="userName">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-3 control-label">Email:</label>
+                    <div class="col-lg-8">
+                        <input class="form-control" type="text" value="janesemail@gmail.com" id="email">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 control-label">City:</label>
+                    <div class="col-md-8">
+                        <input class="form-control" type="text" value="Colombo" id="city">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 control-label">Telephone Number:</label>
+                    <div class="col-md-8">
+                        <input class="form-control" type="tel" value="0765645087" id="tele">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 control-label">Password:</label>
+                    <div class="col-md-8">
+                        <input class="form-control" type="password" value="11111122333" id="password1">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 control-label">Confirm password:</label>
+                    <div class="col-md-8">
+                        <input class="form-control" type="password" value="11111122333" id="password2">
+                    </div>
+                </div>
+<!--                todo get location from map -->
+                <input class="form-control" type="text" value="45.343342" id="latitude">
+                <input class="form-control" type="text" value="-0.237873" id="longitude">
+
+                <div class="form-group">
+                    <label class="col-md-3 control-label"></label>
+                    <div class="col-md-8">
+                        <input type="button" class="btn btn-primary" value="Save Changes" id="upload">
+                        <span></span>
+                        <input type="button" class="btn btn-default" value="Cancel" id="cancelBtn">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<hr>
+<!--===============================================================================-->
+<div class="container">
+    <div class="col-md-9 personal-info">
+        <h4>Delete profile</h4>
+        <p>Are you sure you want to delete your profile?</p>
+        <p>Enter your credentials below</p>
+        <form class="form-group">
+            <input type="text" placeholder="Email" id="deleteEmail">
+            <input type="password" placeholder="Password" id="deletePassword">
+            <input class="btn btn-danger" type="button" value="Delete My Profile" id="deleteProfileBtn">
+        </form>
+    </div>
+</div>
+<br>
+<hr>
+</body>
+</html>
