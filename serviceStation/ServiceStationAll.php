@@ -7,11 +7,11 @@ require_once '../common/Utilities.php';
 
 //test data-----------------------
 //$_SESSION['s_id'] = 1;
-//$_POST['select'] = "LOGIN";
+//$_POST['select'] = "GET_STATION_DETAILS";
 //--------------------------------
 
 //get data to select the function
-$select = $_POST['select'];
+$select = trim($_POST['select']);
 
 //select the function
 if ($select == "LOGIN") {
@@ -19,6 +19,9 @@ if ($select == "LOGIN") {
 }
 if ($select == "ADD_STATION") {
     addStation();
+}
+if ($select == "GET_STATION_DETAILS") {
+    getServiceStationDetails();
 }
 if ($select == "GET_SERVICE_REQUESTS") {
     getServiceRequests();
@@ -29,7 +32,7 @@ if ($select == "UPDATE_SERVICE_STATION") {
 if ($select == "UPDATE_REQUEST_STATUS") {
     updateRequestStatus();
 }
-if ($select == "SHOW_SALES_STATUS"){
+if ($select == "SHOW_SALES_STATUS") {
     showSalesStatus();
 }
 
@@ -42,11 +45,11 @@ function login()
         $result = Database::read("service_station", 's_email = :mail and s_password= :pass',
             array(':mail' => $email, ':pass' => $passHash),
             "s_id,s_name,s_email,s_city,s_telephone,S_latitude,s_longitude,s_picture");
-        if (json_encode($result) != "[]"){
+        if (json_encode($result) != "[]") {
             echo 'SUCCESS';
             $_SESSION['user'] = $result;
-            $_SESSION['s_id']=$result[0]['s_id'];
-        }else{
+            $_SESSION['s_id'] = $result[0]['s_id'];
+        } else {
             echo "ERROR";
         }
     } catch (Error $e) {
@@ -63,13 +66,13 @@ function addStation()
     session_start();
 
     //get data-------------------------------------------------------------------------
-    $name = $_POST['s_name'];
-    $email = $_POST['s_email'];
-    $password = $_POST['s_password'];
-    $city = $_POST['s_city'];
-    $telephone = $_POST['s_telephone'];
-    $latitude = $_POST['s_latitude'];
-    $longitude = $_POST['s_longitude'];
+    $name = $_POST['name'];
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    $city = $_POST['city'];
+    $telephone = $_POST['telephone'];
+    $latitude = $_POST['latitude'];
+    $longitude = $_POST['longitude'];
 
 
 //validate and prepare
@@ -107,6 +110,20 @@ function addStation()
 //login display
 
     echo 'SUCCESS';
+}
+
+function getServiceStationDetails()
+{
+    Utilities::verifyLogIn("SERVICE_CENTER");
+    $sId = $_SESSION['s_id'];
+    try {
+        $result = Database::read("service_station", "s_id = :sid",
+            array(':sid' => $sId),
+            "s_id,s_name,s_email,s_city,s_telephone,S_latitude,s_longitude,s_picture");
+        echo json_encode($result);
+    } catch (Error $e) {
+        echo "ERROR";
+    }
 }
 
 function updateServiceStation()
@@ -182,10 +199,10 @@ function updateServiceStation()
         $i = array('s_longitude' => $longitude->getValue());
         $data = array_merge($data, $i);
     }
-    echo json_encode($data);
+    //echo json_encode($data);
 //DB
     try {
-        $result = Database::update("service_station", $data, "s_id = :sid", array(':sid' => $sId));
+        Database::update("service_station", $data, "s_id = :sid", array(':sid' => $sId));
 
     } catch (Error $e) {
         echo 'Could not connect to database';
@@ -228,6 +245,7 @@ function updateRequestStatus()
 
 }
 
-function showSalesStatus(){
+function showSalesStatus()
+{
 
 }
