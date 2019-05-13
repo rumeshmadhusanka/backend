@@ -385,10 +385,12 @@ function changeServiceAvailability()
 {
     Utilities::verifyLogIn("SERVICE_CENTER");
     $sid = $_SESSION['s_id'];
+    $serviceId = $_POST['serviceId'];
     $availability = $_POST['availability'];
     try{
         Database::update("service","availability = :val",
-            array(':val'=>$availability));
+            "s_id = :sid AND service_id = :serviceId",
+            array(':val'=>$availability,':sid'=>$sid,':serviceId'=>$serviceId));
     }catch (Error $e){
         echo "ERROR";
     }
