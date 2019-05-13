@@ -28,7 +28,7 @@ async function signUp() {
     console.log(response);
     let resText = await response.text();
     if (resText=="SUCCESS"){
-        alert("Sign up successful.please login to continue")
+        alert("Sign up successful.please login to continue");
         window.location.replace("start.html");
     }
 }
