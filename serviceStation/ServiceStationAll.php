@@ -7,7 +7,7 @@ require_once '../common/Utilities.php';
 //ServiceStationAll.php
 //test data-----------------------
 $_SESSION['s_id'] = 31;
-//$_POST['select'] = "GET_STATION_DETAILS";
+//$_POST['select'] = "ADD_SERVICE";
 //--------------------------------
 
 //get data to select the function
@@ -17,7 +17,7 @@ $select = trim($_POST['select']);
 if ($select == "LOGIN") {
     login();
 }
-if ($select == "LOGOUT"){
+if ($select == "LOGOUT") {
     logout();
 }
 if ($select == "ADD_STATION") {
@@ -38,11 +38,20 @@ if ($select == "UPDATE_REQUEST_STATUS") {
 if ($select == "SHOW_SALES_STATUS") {
     showSalesStatus();
 }
-if ($select == "UPLOAD_PIC"){
+if ($select == "UPLOAD_PIC") {
     uploadPic();
 }
-if ($select == "DELETE_STATION"){
+if ($select == "DELETE_STATION") {
     deleteStation();
+}
+if ($select == "ADD_SERVICE") {
+    addService();
+}
+if ($select == "REMOVE_SERVICE") {
+    removeService();
+}
+if ($select == "CHANGE_SER_AVAIL") {
+    changeServiceAvailability();
 }
 
 function login()
@@ -259,7 +268,8 @@ function showSalesStatus()
 
 }
 
-function uploadPic(){
+function uploadPic()
+{
 
 //puts the image in a new name to the directory 'uploads'
 //'uploads' dir should exist
@@ -320,7 +330,8 @@ function uploadPic(){
 
 }
 
-function deleteStation(){
+function deleteStation()
+{
     Utilities::verifyLogIn("SERVICE_CENTER");
 
     $email = $_POST['email'];
@@ -329,8 +340,8 @@ function deleteStation(){
 
     try {
         $availability = Database::read("service_station", "s_id = :sid AND s_email = :email AND s_password = :pass",
-            array(':sid'=>$_SESSION['s_id'],':email' => $email, ':pass' => $passHash));
-        if (json_encode($availability)!= "[]" ) {
+            array(':sid' => $_SESSION['s_id'], ':email' => $email, ':pass' => $passHash));
+        if (json_encode($availability) != "[]") {
             Database::delete("service_station", "s_email = :email AND s_password = :pass",
                 array(':email' => $email, ':pass' => $passHash));
             echo "SUCCESS";
@@ -343,6 +354,39 @@ function deleteStation(){
     }
 }
 
-function logout(){
+function logout()
+{
     Utilities::log_out();
+}
+
+function addService()
+{
+    Utilities::verifyLogIn("SERVICE_CENTER");
+    $sid = $_SESSION['s_id'];
+    $cost = $_POST['cost']=5000;
+    $name = $_POST['name']="gear box repair";
+
+
+    try {
+        $res = Database::insert("service", array('s_id', 'service_name', 'cost'),
+            array($sid, $name, $cost));
+        if ($res == true) {
+            echo "SUCCESS";
+        } else {
+            echo "ERROR";
+        }
+    } catch (Error $e) {
+        echo "ERROR";
+    }
+
+}
+
+function changeServiceAvailability()
+{
+
+}
+
+function removeService()
+{
+
 }
