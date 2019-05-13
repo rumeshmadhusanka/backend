@@ -5,21 +5,26 @@
     <title>login</title>
 </head>
 <body>
-
+<script type="text/javascript" src="../node_modules/jquery/dist/jquery.js"></script>
 <h1>Login</h1>
-<form method="POST" autocomplete="on" id="loginForm" class="form-group">
+<script type="text/javascript" src="start.js"></script>
+<form method="POST" autocomplete="on" id="loginForm">
     <input type="email" placeholder="Email" name="email" autocomplete="email">
     <input type="password" placeholder="Password" name="password" autocomplete="password">
-    <input type="submit">
+    <input type="button" id="submitLogin" value="Login">
 </form>
 <!---->
 <h1>Sign Up</h1>
-<form  method="post" autocomplete="on" id="signInForm">
-    <input type="text" placeholder="Username" name="reg_username">
-    <input type="tel" placeholder="mobile" name="reg_telephone">
-    <input type="password" placeholder="password" name="reg_password" autocomplete="password">
-    <input type="email" autocomplete="email" name="reg_email">
-    <input type="submit">
+<form  method="post" autocomplete="on" id="signUpForm">
+    <input type="text" placeholder="Username" name="name">
+    <input type="email" autocomplete="email" name="email" placeholder="Email">
+    <input type="tel" placeholder="mobile" name="telephone">
+    <input type="password" placeholder="password" name="password" autocomplete="password">
+    <input type="text" placeholder="City" name="city">
+<!--    todo replace with maps values-->
+    <input type="text" placeholder="latitude" name="latitude">
+    <input type="text" placeholder="longitude" name="longitude">
+    <input type="button" id="signUpBtn" value="Sign Up">
 </form>
 </body>
 </html>
