@@ -42,5 +42,5 @@ if ($result != null) {
     echo 'SUCCESS';
 } else {
     echo '<script type=text/javascript>setTimeout(()=>{window.location.replace("../signIn.html")},10);
-            alert("Email or password is wrong")</script>';
+            alert("Email or password is incorrect")</script>';
 }
