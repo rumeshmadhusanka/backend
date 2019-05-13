@@ -30,7 +30,7 @@
                 <img src="" class="avatar img-circle" alt="avatar" id="profilePic">
                 <!--                    todo add css to image to control overflow-->
                 <h6>Upload a different photo...</h6>
-                <form id="picForm" name="photo" enctype="multipart/form-data"  action="../common/upload.php">
+                <form id="picForm" name="photo" enctype="multipart/form-data" action="../common/upload.php">
                     <input type="file" class="form-control" id="profilePicUpload" name="fileToUpload">
                     <input class="btn btn-primary" type="submit" style="visibility: visible"
                            value="Change Profile Picture">
@@ -93,5 +93,19 @@
 </div>
 <hr>
 <!--===============================================================================-->
+<div class="container">
+    <div class="col-md-9 personal-info">
+        <h4>Delete profile</h4>
+        <p>Are you sure you want to delete your profile?</p>
+        <p>Enter your credentials below</p>
+        <form class="form-group">
+        <input type="text" placeholder="Email" id="deleteEmail">
+        <input type="password" placeholder="Password" id="deletePassword">
+        <input class="btn btn-danger" type="button" value="Delete My Profile" id="deleteProfileBtn">
+        </form>
+    </div>
+</div>
+<br>
+<hr>
 </body>
 </html>
