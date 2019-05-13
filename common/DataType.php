@@ -59,7 +59,7 @@ class UserName extends DataType{
 
     public function validate(): bool
     {
-        if (!preg_match("/^[a-zA-Z0-9]+([_ -])?[a-zA-Z0-9]*$/",$this->value)){
+        if (!preg_match("/^[a-z A-Z 0-9]+([_ -])?[a-zA-Z0-9]*$/",$this->value)){
 
             $this->validationStatus=false;
         }
