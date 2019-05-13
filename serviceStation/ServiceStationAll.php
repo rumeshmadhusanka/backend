@@ -389,10 +389,10 @@ function changeServiceAvailability()
     try{
         Database::update("service","availability = :val",
             array(':val'=>$availability));
-        echo "SUCCESS";
     }catch (Error $e){
         echo "ERROR";
     }
+    echo "SUCCESS";
 }
 
 function removeService()
@@ -403,8 +403,8 @@ function removeService()
     try{
         Database::delete("service","s_id = :sid AND service_id = :serviceId",
             array(':sid'=>$sid,':serviceId'=>$serviceId));
-        echo "SUCCESS";
     }catch (Error $e){
         echo "ERROR";
     }
+    echo "SUCCESS";
 }
