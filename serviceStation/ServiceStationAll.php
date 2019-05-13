@@ -6,8 +6,8 @@ require_once '../common/DataType.php';
 require_once '../common/Utilities.php';
 
 //test data-----------------------
-$_SESSION['s_id'] = 1;
-$_POST['select'] = "LOGIN";
+//$_SESSION['s_id'] = 1;
+//$_POST['select'] = "LOGIN";
 //--------------------------------
 
 //get data to select the function
@@ -42,8 +42,13 @@ function login()
         $result = Database::read("service_station", 's_email = :mail and s_password= :pass',
             array(':mail' => $email, ':pass' => $passHash),
             "s_id,s_name,s_email,s_city,s_telephone,S_latitude,s_longitude,s_picture");
-        $_SESSION['user'] = $result;
-        $_SESSION['s_id']=$result[0]['s_id'];
+        if (json_encode($result) != "[]"){
+            echo 'SUCCESS';
+            $_SESSION['user'] = $result;
+            $_SESSION['s_id']=$result[0]['s_id'];
+        }else{
+            echo "ERROR";
+        }
     } catch (Error $e) {
         echo "ERROR";
     }
