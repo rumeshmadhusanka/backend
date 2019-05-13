@@ -10,10 +10,10 @@ require_once '../common/DataType.php';
 require_once '../common/Utilities.php';
 
 //get data
-$name=$_POST['reg_username'];
-$password=$_POST['reg_password'];
-$telephone=$_POST['reg_telephone'];
-$email=$_POST['reg_email'];
+$name=$_POST['reg_username']="bu";
+$password=$_POST['reg_password']="password";
+$telephone=$_POST['reg_telephone']="875678657";
+$email=$_POST['reg_email']="adf@gmail.com";
 
 //validate and prepare
 $userName=new UserName($name);
@@ -32,7 +32,7 @@ $passHash=Utilities::encrypt($password);
 //DB
 try {
     $result = Database::insert("user",array('u_name','u_tele','u_password','u_email')
-        ,array($userName,$userTele,$passHash,$userEmail));
+        ,array($userName->getValue(),$userTele->getValue(),$passHash,$userEmail->getValue()));
 }catch (Error $e){
     echo 'Could not connect to database';
     die();
