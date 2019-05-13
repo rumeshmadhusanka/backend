@@ -6,7 +6,7 @@ require_once '../common/DataType.php';
 require_once '../common/Utilities.php';
 //ServiceStationAll.php
 //test data-----------------------
-$_SESSION['s_id'] = 31;
+$_SESSION['s_id'] = 1;
 //$_POST['select'] = "ADD_SERVICE";
 //--------------------------------
 
@@ -52,6 +52,9 @@ if ($select == "REMOVE_SERVICE") {
 }
 if ($select == "CHANGE_SER_AVAIL") {
     changeServiceAvailability();
+}
+if ($select == "GET_MY_SERVICES") {
+    getMyServices();
 }
 
 function login()
@@ -359,6 +362,21 @@ function logout()
     Utilities::log_out();
 }
 
+function getMyServices()
+{
+    Utilities::verifyLogIn("SERVICE_CENTER");
+    $sId = $_SESSION['s_id'];
+
+    try {
+        $result = Database::read("service", "s_id = :sId"
+            , array(':sId' => $sId), "*");
+        echo json_encode($result);
+    } catch (Error $e) {
+        echo "Database error";
+    }
+
+}
+
 function addService()
 {
     Utilities::verifyLogIn("SERVICE_CENTER");
@@ -387,11 +405,11 @@ function changeServiceAvailability()
     $sid = $_SESSION['s_id'];
     $serviceId = $_POST['serviceId'];
     $availability = $_POST['availability'];
-    try{
-        Database::update("service","availability = :val",
+    try {
+        Database::update("service", "availability = :val",
             "s_id = :sid AND service_id = :serviceId",
-            array(':val'=>$availability,':sid'=>$sid,':serviceId'=>$serviceId));
-    }catch (Error $e){
+            array(':val' => $availability, ':sid' => $sid, ':serviceId' => $serviceId));
+    } catch (Error $e) {
         echo "ERROR";
     }
     echo "SUCCESS";
@@ -402,10 +420,10 @@ function removeService()
     Utilities::verifyLogIn("SERVICE_CENTER");
     $sid = $_SESSION['s_id'];
     $serviceId = $_POST['serviceId'];
-    try{
-        Database::delete("service","s_id = :sid AND service_id = :serviceId",
-            array(':sid'=>$sid,':serviceId'=>$serviceId));
-    }catch (Error $e){
+    try {
+        Database::delete("service", "s_id = :sid AND service_id = :serviceId",
+            array(':sid' => $sid, ':serviceId' => $serviceId));
+    } catch (Error $e) {
         echo "ERROR";
     }
     echo "SUCCESS";
