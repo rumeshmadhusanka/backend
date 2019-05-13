@@ -6,7 +6,6 @@ require_once '../common/Database.php';
 require_once '../common/DataType.php';
 require_once '../common/Utilities.php';
 
-$_SESSION['u_id'] = 1;
 $uid = $_SESSION['u_id'];
 $sql = "select service.service_name,
        service_request.r_description,

@@ -3,7 +3,9 @@ session_start();
 header('Access-Control-Allow-Origin: *');
 require_once '../common/Database.php';
 require_once '../common/DataType.php';
+require_once '../common/Utilities.php';
 
+Utilities::verifyLogIn("SERVICE_CENTER");
 //get data-------------------------------------------------------------
 $rId = $_GET['r_id'];
 $status = $_GET['status'];

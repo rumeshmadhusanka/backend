@@ -6,7 +6,7 @@ require_once '../common/DataType.php';
 require_once '../common/Utilities.php';
 
 ////Test data
-$_SESSION['u_id']=2;
+//$_SESSION['u_id']=2;
 //$_POST['service_id']=8;
 //$_POST['r_description']="description";
 //$_POST['r_latitude']="3.3434";

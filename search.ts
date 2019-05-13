@@ -1,12 +1,14 @@
 $(function () {
-    $("#search").on('keydown', search)
+    $("#search").on('keyup', search)
+    console.log("start");
 });
 
 function search() {
     let input = <string>($('#search').val());
     let endpoint = <HTMLElement><unknown>(document.getElementById("b"));
+    console.log("inside search");
     if (input == "") {
-
+        console.log("empty query");
         endpoint.innerHTML = "";
     }
     $.ajax({
@@ -17,6 +19,7 @@ function search() {
             table: "service"
         },
         success: function (data) {
+            console.log("Ajax sucess");
             if (data != 'NULL') {
                 let ans;
                 try {

@@ -147,7 +147,7 @@ function showUserRegServices() {
             <td>${cost}</td>
             <td>${description}</td>
             <td>${time}</td>
-            <td><a href="${tele}">${tele}</a></td>
+            <td><a href="tel:${tele}">${tele}</a></td>
         </tr>`;
             station=details[i].s_name+" :"+details[i].s_city;
             service =details[i].service_name;

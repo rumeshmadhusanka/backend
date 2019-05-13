@@ -178,6 +178,7 @@ function uploadData() {
         text.then(function (data) {
             console.log(data);
                 alert(data);//todo replace alert
+            setTimeout(()=>window.location.replace('../index.html'),1000)
         });
 
     }

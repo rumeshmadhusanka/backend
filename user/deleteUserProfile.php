@@ -6,7 +6,6 @@ require_once '../common/Database.php';
 require_once '../common/DataType.php';
 require_once '../common/Utilities.php';
 
-$_SESSION['u_id'];
 Utilities::verifyLogIn("USER");
 
 $email = $_POST['email'];

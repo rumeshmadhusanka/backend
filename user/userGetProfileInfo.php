@@ -8,7 +8,7 @@ require_once '../common/DataType.php';
 require_once '../common/Utilities.php';
 
 //verify login
-$_SESSION['u_id'] = 1;//------------------------------
+//$_SESSION['u_id'] = 1;//------------------------------
 Utilities::verifyLogIn("USER");
 $uId = $_SESSION['u_id'];
 

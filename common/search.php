@@ -11,4 +11,12 @@ if (isset($_GET)) {
     die();
 }
 
-echo Utilities::searchFrom($table,$keyWord);
+if ($table=="service") {
+    $field="service_name";
+    echo Utilities::searchFromServiceTable($table, $field, $keyWord);
+}else if ($table=="service_station"){
+    $field="s_name";
+    echo Utilities::searchFromServiceTable($table, $field, $keyWord);
+}else{
+    echo "ERROR";
+}

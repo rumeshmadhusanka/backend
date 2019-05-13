@@ -46,5 +46,7 @@ $(function () {
         })
     }
 });
-
-
+// let i="";
+// $.ajax(
+//     {url:"getPendingServiceRequests.php?sId=1",type:"GET"}
+//     ).then((data)=>{i=JSON.parse(data)});

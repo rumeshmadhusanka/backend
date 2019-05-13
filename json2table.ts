@@ -1,4 +1,5 @@
-$(function () {
+$();
+function load() {
     $.ajax({
         url: "userGetProfileInfo.php", method: "GET"
     }).then(function (dataEx) {
@@ -15,5 +16,4 @@ $(function () {
         $('#pic').attr('src', "../" + person.u_profile_pic);
     });
 
-})
-;
+}
