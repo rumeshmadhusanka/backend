@@ -363,8 +363,8 @@ function addService()
 {
     Utilities::verifyLogIn("SERVICE_CENTER");
     $sid = $_SESSION['s_id'];
-    $cost = $_POST['cost']=5000;
-    $name = $_POST['name']="gear box repair";
+    $cost = $_POST['cost'];
+    $name = $_POST['name'];
 
 
     try {
