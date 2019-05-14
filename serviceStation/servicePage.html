@@ -6,9 +6,9 @@
 </head>
 <body>
 <script type="text/javascript" src="../node_modules/jquery/dist/jquery.js"></script>
-<script type="text/javascript" src="showServiceRequests.js"></script>
+<script type="text/javascript" src="servicePage.js"></script>
 <div>
-    <table id="dataTable">
+    <table id="pendingTable">
         <tr>
             <td>RequestId</td>
             <td>ServiceId</td>
@@ -18,9 +18,21 @@
             <td>Requested time</td>
             <td>Action</td>
         </tr>
-
     </table>
-    <input type="button" value="Load">
 </div>
+<div>
+    <table id="doneTable">
+        <tr>
+            <td>RequestId</td>
+            <td>ServiceId</td>
+            <td>Description</td>
+            <td>Location</td>
+            <td>Status</td>
+            <td>Requested time</td>
+            <td>Action</td>
+        </tr>
+    </table>
+</div>
+
 </body>
 </html>
