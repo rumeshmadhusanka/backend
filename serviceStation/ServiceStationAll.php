@@ -7,7 +7,7 @@ require_once '../common/Utilities.php';
 //ServiceStationAll.php
 //test data-----------------------
 $_SESSION['s_id'] = 1;
-$_POST['select'] = "SHOW_SALES_STATUS";
+//$_POST['select'] = "SHOW_SALES_STATUS";
 //--------------------------------
 
 //get data to select the function
@@ -271,7 +271,7 @@ function showSalesStatus()
     //ex2: [{"total":null}]
     Utilities::verifyLogIn("SERVICE_CENTER");
     $sId = $_SESSION['s_id'];
-    $param = $_POST['param']="TOP_CUSTOMERS";
+    $param = $_POST['param'];
 
     $sql = "";
     if ($param == "GET_TOTAL") {
