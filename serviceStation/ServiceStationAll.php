@@ -7,7 +7,7 @@ require_once '../common/Utilities.php';
 //ServiceStationAll.php
 //test data-----------------------
 $_SESSION['s_id'] = 1;
-//$_POST['select'] = "ADD_SERVICE";
+$_POST['select'] = "SHOW_SALES_STATUS";
 //--------------------------------
 
 //get data to select the function
@@ -267,8 +267,40 @@ function updateRequestStatus()
 }
 
 function showSalesStatus()
-{
+{//output ex1: [{"total":"73000"}]
+    //ex2: [{"total":null}]
+    Utilities::verifyLogIn("SERVICE_CENTER");
+    $sId = $_SESSION['s_id'];
+    $param = $_POST['param']="TOP_CUSTOMERS";
 
+    $sql = "";
+    if ($param == "GET_TOTAL") {
+        $sql = "select sum(service.cost) as total  from service_request
+            inner join service on service_request.service_id = service.service_id
+            where service_request.s_id = :sid and r_status = 'DONE'";
+    }
+    if ($param == "TOP_CUSTOMERS") {
+        $sql = "select u.u_id, u.u_name,u.u_tele,sum(service.cost) as total
+                from service_request
+                    inner join user u on service_request.u_id = u.u_id
+                    inner join service on service_request.service_id = service.service_id
+                where service_request.s_id = :sid
+                group by u.u_id
+                order by total desc
+                limit 0,10";
+    }
+
+    try {
+        $result = Database::run($sql, array(':sid' => $sId));
+        $result->setFetchMode(PDO::FETCH_ASSOC);
+        $rows = array();
+        while ($row = $result->fetch()) {
+            $rows[] = $row;
+        }
+        echo json_encode($rows);
+    } catch (Error $e) {
+        echo "ERROR";
+    }
 }
 
 function uploadPic()
