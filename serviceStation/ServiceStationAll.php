@@ -424,12 +424,13 @@ function addService()
     Utilities::verifyLogIn("SERVICE_CENTER");
     $sid = $_SESSION['s_id'];
     $cost = $_POST['cost'];
-    $name = $_POST['name'];
+    $name = $_POST['service_name'];
+    $ava = $_POST['availability'];
 
 
     try {
-        $res = Database::insert("service", array('s_id', 'service_name', 'cost'),
-            array($sid, $name, $cost));
+        $res = Database::insert("service", array('s_id', 'service_name', 'cost','availability'),
+            array($sid, $name, $cost,$ava));
         if ($res == true) {
             echo "SUCCESS";
         } else {
