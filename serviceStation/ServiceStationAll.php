@@ -50,8 +50,8 @@ if ($select == "ADD_SERVICE") {
 if ($select == "REMOVE_SERVICE") {
     removeService();
 }
-if ($select == "CHANGE_SER_AVAIL") {
-    changeServiceAvailability();
+if ($select == "UPDATE_SERVICE") {
+    updateService();
 }
 if ($select == "GET_MY_SERVICES") {
     getMyServices();
@@ -441,17 +441,21 @@ function addService()
 
 }
 
-function changeServiceAvailability()
+function updateService()
 {
     Utilities::verifyLogIn("SERVICE_CENTER");
     $sid = $_SESSION['s_id'];
-    $serviceId = $_POST['serviceId'];
+    $serviceId = $_POST['service_id'];
+    $name = $_POST['service_name'];
+    $cost = $_POST['cost'];
     $availability = $_POST['availability'];
     try {
-        Database::update("service", "availability = :val",
+        Database::update("service",
+            array('availability' => $availability ,'cost' => $cost , 'service_name' => $name),
             "s_id = :sid AND service_id = :serviceId",
-            array(':val' => $availability, ':sid' => $sid, ':serviceId' => $serviceId));
+            array(':sid' => $sid,':serviceId' => $serviceId));
     } catch (Error $e) {
+        echo $e;
         echo "ERROR";
     }
     echo "SUCCESS";
