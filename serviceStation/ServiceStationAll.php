@@ -239,12 +239,22 @@ function getServiceRequests()
     Utilities::verifyLogIn("SERVICE_CENTER");
     $sId = $_SESSION['s_id'];
     $status = $_POST['status'];//////////PENDING,DONE,CANCELLED
+    $sql="select sr.r_id,user.u_name,sr.service_id, service.service_name,sr.r_description,sr.r_status,sr.r_submit_time
+from service_request sr
+         inner join service on sr.service_id = service.service_id
+         inner join user on user.u_id = sr.u_id
+where sr.s_id = :sId and sr.r_status = :stat
+group by sr.r_id";
 
 //find in db
     try {
-        $result = Database::read("service_request", "s_id = :sId and r_status = :status"
-            , array(':sId' => $sId, ':status' => $status), "*");
-        echo json_encode($result);
+        $result = Database::run($sql,array(':sId' => $sId, ':stat' => $status));
+        $result->setFetchMode(PDO::FETCH_ASSOC);
+        $rows = array();
+        while ($row = $result->fetch()) {
+            $rows[] = $row;
+        }
+        echo json_encode($rows);
     } catch (Error $e) {
         echo "Database error";
     }
