@@ -26,7 +26,7 @@ if ($select == "SIGN_UP") {
     signUp();
 }
 if ($select == "GET_SERVICES_IN_STATION") {
-    getServiceStations();
+    getServicesInStation();
 }
 if ($select == "GET_REQUEST_DETAILS") {
     getRequestDetails();

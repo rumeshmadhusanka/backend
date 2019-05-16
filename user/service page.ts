@@ -3,58 +3,60 @@ $(function () {
     $("#serviceStationSelection").on("change", getServices);
     displaySearchResults();
     $("#addServiceBtn").on("click", addServiceByStation);
-    setInterval(showUserRegServices, 6000);
+    setInterval(showUserRegServices, 2000);
 });
 
-function getServiceStations() {
-    $.ajax({
-        url: "getServiceStations.php",
-        method: "GET",
-    }).then(function (data) {
-        let stations = JSON.parse(data);
-        console.log(stations);
-        for (let i = 0; i < stations.length; i++) {
-            let sId = stations[i].s_id;
-            let sName = stations[i].s_name;
-            let sCity = stations[i].s_city;
-            $("#serviceStationSelection").append(`<option value=${sId}>${sName}:${sCity}</option>`);
-        }
-
-    })
+async function getServiceStations() {
+    let form = new FormData();
+    form.append("select", "GET_SERVICE_STATIONS");
+    let res = await fetch("userAll.php", {
+        method: "POST",
+        body: form
+    });
+    let stations = await res.json();
+    //console.log(stations);
+    for (let i = 0; i < stations.length; i++) {
+        let sId = stations[i].s_id;
+        let sName = stations[i].s_name;
+        let sCity = stations[i].s_city;
+        $("#serviceStationSelection").append(`<option value=${sId}>${sName}:${sCity}</option>`);
+    }
 }
 
-function getServices() {
-    $.ajax({
-        url: "getServicesInServiceStations.php",
-        method: "GET",
-        data: {s_id: (<HTMLInputElement>document.getElementById("serviceStationSelection")).value}
-    }).then(function (data) {
-        let services = JSON.parse(data);
-        let endPoint = $("#availableServices");
-        console.log(services);
-        endPoint.empty();
-        for (let i = 0; i < services.length; i++) {
-            let sId = services[i].service_id;
-            let sName = services[i].service_name;
-            let cost = services[i].cost;
-            endPoint.append(`<option value=${sId}>${sName}:LKR ${cost}</option>`);
-        }
-    })
+async function getServices() {
+    let form = new FormData();
+    form.append("select", "GET_SERVICES_IN_STATION");
+    form.append("s_id", (<HTMLInputElement>document.getElementById("serviceStationSelection")).value)
+    let res = await fetch("userAll.php", {
+        method: "POST",
+        body: form
+    });
+    let services = await res.json();
+    let endPoint = $("#availableServices");
+    console.log(services);
+    endPoint.empty();
+    for (let i = 0; i < services.length; i++) {
+        let sId = services[i].service_id;
+        let sName = services[i].service_name;
+        let cost = services[i].cost;
+        endPoint.append(`<option value=${sId}>${sName}:LKR ${cost}</option>`);
+    }
 }
 
-function findServiceStation() {
+async function findServiceStation() {
     let service = (<HTMLInputElement>document.getElementById("search")).value;
     console.log("Keyword: " + service);
     let form = new FormData();
     form.append("keyword", service);
     form.append("table", "service");
+    form.append("select", "SEARCH_STATION");
     if (service != "") {
-        fetch("searchAStation.php",
+        fetch("userAll.php",
             {
                 method: "POST",
                 body: form
             }).then(function (data) {
-            //console.log(data);
+
             return data.text();
         }).then(function (data) {
             //console.log(data);
@@ -79,7 +81,7 @@ function displaySearchResults() {
     search.on("focusout", findServiceStation);
 }
 
-function addServiceByStation() {
+async function addServiceByStation() {
     //todo add the location data from the map
     let serviceId = (<HTMLInputElement>document.getElementById("availableServices")).value;
     let description = (<HTMLInputElement>document.getElementById("description1")).value;
@@ -91,9 +93,10 @@ function addServiceByStation() {
     data.append("r_description", description);
     data.append("r_latitude", latitude);
     data.append("r_longitude", longitude);
+    data.append("select", "ADD_SERVICE_REQUEST");
     //call fetch
     if (serviceId !== "") {
-        fetch("addServiceRequest.php", {method: "POST", body: data}).then(function (response) {
+        fetch("userAll.php", {method: "POST", body: data}).then(function (response) {
             alert("Service added ");//todo replace alert
             console.log(response.status);
             return response.text();
@@ -128,7 +131,12 @@ function showUserRegServices() {
     let status = "";
     let time = "";
     let tele = "";
-    fetch("getReqDetailsCombined.php")
+    let form = new FormData();
+    form.append("select", "GET_REQUEST_DETAILS");
+    fetch("userAll.php", {
+        method: "POST",
+        body: form
+    })
         .then(function (data) {
             return data.text();
         }).catch(function (data) {
@@ -149,16 +157,16 @@ function showUserRegServices() {
             <td>${time}</td>
             <td><a href="tel:${tele}">${tele}</a></td>
         </tr>`;
-            station=details[i].s_name+" :"+details[i].s_city;
-            service =details[i].service_name;
-            cost=details[i].cost;
-            description=details[i].r_description;
-            time=details[i].r_submit_time;
-            status=details[i].r_status;
-            tele=details[i].s_telephone;
-            if (status === "PENDING"){
+            station = details[i].s_name + " :" + details[i].s_city;
+            service = details[i].service_name;
+            cost = details[i].cost;
+            description = details[i].r_description;
+            time = details[i].r_submit_time;
+            status = details[i].r_status;
+            tele = details[i].s_telephone;
+            if (status === "PENDING") {
                 pending.append(template);
-            }else if (status === "DONE") {
+            } else if (status === "DONE") {
                 done.append(template);
             }
 
