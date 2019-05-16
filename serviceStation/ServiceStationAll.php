@@ -239,7 +239,7 @@ function getServiceRequests()
     Utilities::verifyLogIn("SERVICE_CENTER");
     $sId = $_SESSION['s_id'];
     $status = $_POST['status'];//////////PENDING,DONE,CANCELLED
-    $sql="select sr.r_id,user.u_name,sr.service_id, service.service_name,sr.r_description,sr.r_status,sr.r_submit_time
+    $sql = "select sr.r_id,user.u_name,sr.service_id, service.service_name,sr.r_description,sr.r_status,sr.r_submit_time
 from service_request sr
          inner join service on sr.service_id = service.service_id
          inner join user on user.u_id = sr.u_id
@@ -248,7 +248,7 @@ group by sr.r_id";
 
 //find in db
     try {
-        $result = Database::run($sql,array(':sId' => $sId, ':stat' => $status));
+        $result = Database::run($sql, array(':sId' => $sId, ':stat' => $status));
         $result->setFetchMode(PDO::FETCH_ASSOC);
         $rows = array();
         while ($row = $result->fetch()) {
@@ -290,11 +290,11 @@ function showSalesStatus()
             where service_request.s_id = :sid and r_status = 'DONE'";
     }
     if ($param == "TOP_CUSTOMERS") {
-        $sql = "select u.u_id, u.u_name,u.u_tele,sum(service.cost) as total
+        $sql = "select u.u_name,u.u_tele,sum(service.cost) as total
                 from service_request
                     inner join user u on service_request.u_id = u.u_id
                     inner join service on service_request.service_id = service.service_id
-                where service_request.s_id = :sid
+                where service_request.s_id = :sid and r_status = 'DONE'
                 group by u.u_id
                 order by total desc
                 limit 0,10";
@@ -429,8 +429,8 @@ function addService()
 
 
     try {
-        $res = Database::insert("service", array('s_id', 'service_name', 'cost','availability'),
-            array($sid, $name, $cost,$ava));
+        $res = Database::insert("service", array('s_id', 'service_name', 'cost', 'availability'),
+            array($sid, $name, $cost, $ava));
         if ($res == true) {
             echo "SUCCESS";
         } else {
@@ -452,9 +452,9 @@ function updateService()
     $availability = $_POST['availability'];
     try {
         Database::update("service",
-            array('availability' => $availability ,'cost' => $cost , 'service_name' => $name),
+            array('availability' => $availability, 'cost' => $cost, 'service_name' => $name),
             "s_id = :sid AND service_id = :serviceId",
-            array(':sid' => $sid,':serviceId' => $serviceId));
+            array(':sid' => $sid, ':serviceId' => $serviceId));
     } catch (Error $e) {
         echo $e;
         echo "ERROR";
