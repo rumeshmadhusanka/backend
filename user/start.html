@@ -5,11 +5,13 @@
     <title>login</title>
 </head>
 <body>
+<script type="text/javascript" src="../node_modules/jquery/dist/jquery.js"></script>
 <h1>Login</h1>
-<form action="loginUser.php" method="POST" autocomplete="on">
+<script type="text/javascript" src="start.js"></script>
+<form method="POST" autocomplete="on" id="loginForm">
     <input type="email" placeholder="Email" name="log_email" autocomplete="email">
     <input type="password" placeholder="Password" name="log_password" autocomplete="password">
-    <input type="submit">
+    <input type="button" id="submitLogin" value="Login">
 </form>
 <!---->
 <h1>Sign Up</h1>
@@ -18,7 +20,12 @@
     <input type="tel" placeholder="mobile" name="reg_telephone">
     <input type="password" placeholder="password" name="reg_password" autocomplete="password">
     <input type="email" autocomplete="email" name="reg_email">
-    <input type="submit">
+    <input type="button" id="signUpBtn">
 </form>
+<a href="start.html">Start page</a>
+<a href="service%20page.html">Service Page</a>
+<a href="userProfileUpdate.html">Update profile</a>
+<a href="" onclick="logoutUser()">Log out</a>
+<script type="text/javascript" src="logout.js"></script>
 </body>
 </html>
