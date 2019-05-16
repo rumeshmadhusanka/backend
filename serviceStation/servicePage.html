@@ -39,5 +39,28 @@
     </table>
 </div>
 
+<div>
+    <h3>My Services(Edit)</h3>
+    <table id="servicesTable">
+        <tr>
+            <td>Service Name</td>
+            <td>Cost</td>
+            <td>Availability</td>
+        </tr>
+    </table>
+</div>
+<div>
+    <h3>Add new Service</h3>
+    <form id="addServiceForm">
+        <input type="text" placeholder="Service Name" name="service_name">
+        <input type="number" placeholder="Cost(LKR)" name="cost">
+        <label>Availability</label>
+        <select name="availability">
+            <option value="TRUE">TRUE</option>
+            <option value="FALSE">FALSE</option>
+        </select>
+    </form>
+    <input type="button" value="Add Service" id="addServiceBtn">
+</div>
 </body>
 </html>

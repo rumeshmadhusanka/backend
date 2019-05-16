@@ -50,7 +50,7 @@ class Observable {
             return data.json();
         });
         promise.then((msg) => {
-            console.log(msg);
+            //console.log(msg);
             let reqId = "";
             let cus = "";
             let serId = "";
@@ -58,7 +58,7 @@ class Observable {
             let des = "";
             let status = "";
             let reqTime = "";
-            let send=Array();
+            let send = Array();
             for (let i = 0; i < msg.length; i++) {
                 reqId = msg[i].r_id;
                 serId = msg[i].service_id;
@@ -92,59 +92,34 @@ class Observable {
 
 $(function () {
     main();
+    loadMyServices();
+    $("#addServiceBtn").on('click',addNewService);
 });
 
-async function loadDoneReq() {
-    let doneTable = <HTMLElement>document.getElementById("doneTable");
-    let form = new FormData();
-    form.append("select", "GET_SERVICE_REQUESTS");
-    form.append("status", "DONE");
-    let res = await fetch("ServiceStationAll.php", {
-        method: "POST",
-        body: form
-    });
-    let requests = await res.json();
-    for (let i = 0; i < requests.length; i++) {
-        console.log(requests[i]);//todo use iterator
-    }
-
-}
-
-async function loadPendingReq() {
-    let pendingTable = <HTMLElement>document.getElementById("pendingTable");
-    let form = new FormData();
-    form.append("select", "GET_SERVICE_REQUESTS");
-    form.append("status", "PENDING");
-    let res = await fetch("ServiceStationAll.php", {
-        method: "POST",
-        body: form
-    });
-    let requests = await res.json();
-    for (let i = 0; i < requests.length; i++) {
-        console.log(requests[i]);//todo use iterator
-    }
-}
-
-async function addService() {
-
-}
-
-async function removeService() {
-
-}
-
 async function loadMyServices() {
-    let serviceTable = <HTMLElement>document.getElementById("myServiceTable");
+    let serviceTable = <HTMLElement>document.getElementById("servicesTable");
     let form = new FormData();
     form.append("select", "GET_MY_SERVICES");
     let res = await fetch("ServiceStationAll.php", {
         method: "POST",
         body: form
     });
-    let requests = await res.json();
-    for (let i = 0; i < requests.length; i++) {
-        console.log(requests[i]);//todo use iterator
+    let response = await res.json();
+    serviceTable.innerHTML = `<tr>
+            <td>Service Id</td>
+            <td>Service Name</td>
+            <td>Cost</td>
+            <td>Availability</td>
+        </tr>`;
+    for (let i = 0; i < response.length; i++) {
+        serviceTable.innerHTML += `<tr onfocusout="updateService(this)">
+            <td contenteditable="false">${response[i].service_id}</td>
+            <td contenteditable="true">${response[i].service_name}</td>
+            <td contenteditable="true">${response[i].cost}</td>
+            <td contenteditable="true">${response[i].availability}</td>
+        </tr>`;
     }
+    console.log(response);
 }
 
 async function cancelServiceReq(rId: number) {
@@ -158,7 +133,7 @@ async function cancelServiceReq(rId: number) {
         body: form
     });
     let text = await res.text();
-    if (text == "SUCCESS"){
+    if (text == "SUCCESS") {
         alert(`Request ${rId} marked as cancelled`);//todo replace alert
     }
 }
@@ -173,35 +148,8 @@ async function doneServiceReq(rId: number) {
         body: form
     });
     let text = await res.text();
-    if (text == "SUCCESS"){
+    if (text == "SUCCESS") {
         alert(`Request ${rId} marked as done`);//todo replace alert
-    }
-}
-
-async function showTotalSalesStatus() {
-    let form = new FormData();
-    form.append("select", "SHOW_SALES_STATUS");
-    form.append("param", "GET_TOTAL");
-    let res = await fetch("ServiceStationAll.php", {
-        method: "POST",
-        body: form
-    });
-    let response = await res.json();
-    response[0].total;//todo display answer
-
-}
-
-async function showTopCustomers() {
-    let form = new FormData();
-    form.append("select", "TOP_CUSTOMERS");
-    form.append("param", "GET_TOTAL");
-    let res = await fetch("ServiceStationAll.php", {
-        method: "POST",
-        body: form
-    });
-    let response = await res.json();
-    for (let i = 0; i < response.length; i++) {
-        console.log(response[i]);//todo use iterator
     }
 }
 
@@ -210,7 +158,7 @@ function main() {
     let pendingObserverFunc = function (data: any) {
 
         let pendingTable = <HTMLElement>document.getElementById("pendingTable");
-        pendingTable.innerHTML=`<tr>
+        pendingTable.innerHTML = `<tr>
             <td>RequestId</td>
             <td>ServiceId</td>
             <td>Customer name</td>
@@ -221,7 +169,7 @@ function main() {
             <td>Action</td>
         </tr>`;
         for (let i = 0; i < data.length; i++) {
-            pendingTable.innerHTML+=data[i];
+            pendingTable.innerHTML += data[i];
         }
 
     };
@@ -238,7 +186,7 @@ function main() {
     let doneObserverFunc = function (data: any) {
 
         let pendingTable = <HTMLElement>document.getElementById("doneTable");
-        pendingTable.innerHTML=`<tr>
+        pendingTable.innerHTML = `<tr>
             <td>RequestId</td>
             <td>ServiceId</td>
             <td>Customer name</td>
@@ -249,17 +197,58 @@ function main() {
             <td>Action</td>
         </tr>`;
         for (let i = 0; i < data.length; i++) {
-            pendingTable.innerHTML+=data[i];
+            pendingTable.innerHTML += data[i];
         }
 
     };
-    let a2=new Observer(doneObserverFunc);
+    let a2 = new Observer(doneObserverFunc);
     let params2 = {"select": "GET_SERVICE_REQUESTS", "status": "DONE"};
-    let doneObservable =new Observable("ServiceStationAll.php");
+    let doneObservable = new Observable("ServiceStationAll.php");
     doneObservable.addObserver(a2);
     doneObservable.work(params2);
     setInterval(() => {
-        pendingObservable.work(params)
+        doneObservable.work(params2)
     }, 1000);
 }
 
+async function updateService(row: HTMLElement) {
+    let children = row.children;
+    //console.log(children);
+    let serviceId = (<HTMLElement>children[0]).innerText;
+    let serviceName = (<HTMLElement>children[1]).innerText;
+    let cost = (<HTMLElement>children[2]).innerText;
+    let ava = (<HTMLElement>children[3]).innerText;
+    //console.log(ava,serviceName);
+    let form = new FormData();
+    form.append("select", "UPDATE_SERVICE");
+    form.append("service_id", serviceId);
+    form.append("service_name", serviceName);
+    form.append("cost", cost);
+    form.append("availability", ava);
+    let res = await fetch("ServiceStationAll.php", {
+        method: "POST",
+        body: form
+    });
+    let response = await res.text();
+    //console.log(response);
+    if (response == "SUCCESS") {
+        console.log("updated");
+        alert(`Updated service, id: ${serviceId} `);
+    }
+    loadMyServices();
+}
+async function addNewService() {
+    let form =new FormData(<HTMLFormElement>document.getElementById("addServiceForm"));
+    form.append("select","ADD_SERVICE");
+    let res = await fetch("ServiceStationAll.php", {
+        method: "POST",
+        body: form
+    });
+    let response = await res.text();
+    console.log(response);
+    if (response == "SUCCESS") {
+        console.log("updated");
+        alert(`Added service`);//todo replace alert
+        loadMyServices();
+    }
+}
