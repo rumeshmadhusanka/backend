@@ -332,9 +332,9 @@ function updateProfile()
 function updateLocation()
 {
     Utilities::verifyLogIn("USER");
-    $userId = $_GET['u_id'];
-    $latitude = $_GET['latitude'];
-    $longitude = $_GET['longitude'];
+    $userId = $_POST['u_id'];
+    $latitude = $_POST['latitude'];
+    $longitude = $_POST['longitude'];
 //DB
     try {
         $result = Database::insert("user_location", array('u_id', 'latitude', 'longitude')
@@ -370,7 +370,7 @@ function getProfileInfo()
 function cancelRequest()
 {
     Utilities::verifyLogIn("USER");
-    $rId = $_GET['r_id'];
+    $rId = $_POST['r_id'];
     try {
         Database::update("service_request", array('r_status' => "CANCELLED"), "r_id = :id"
             , array(':id' => $rId));
