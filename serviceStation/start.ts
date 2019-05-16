@@ -14,7 +14,7 @@ async function login() {
     console.log(response);
     let resText = await response.text();
     if (resText=="SUCCESS"){
-        window.location.replace("");
+        window.location.replace("servicePage.html");
     }
 }
 async function signUp() {
