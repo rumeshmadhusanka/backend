@@ -17,12 +17,16 @@ $(function () {
             cache: false,
             processData: false,
             success: function (data) {
-                //$("#targetLayer").html(data);
                 console.log("Profile pic ajax success");
-                $.ajax({
-                    url: "userGetProfileInfo.php", method: "GET"
-                }).then(function (dataEx) {
-                    let data = JSON.parse(dataEx);
+                let form = new FormData();
+                form.append("select","GET_PROFILE_INFO");
+                let res =  fetch("userAll.php",{
+                    method: "POST",
+                    body:form
+                });
+                res.then(function (dataEx) {
+                    return dataEx.json();
+                }).then(function (data) {
                     let person = data[0];
                     $('#profilePic').attr('src', person.u_profile_pic);
                     console.log("Get new pic from database");
@@ -32,32 +36,31 @@ $(function () {
                 console.log("Profile pic upload req failed");
             }
         });
-    }))
+    }));
 
-    $("#deleteProfileBtn").on('click', deleteUserProfile)
+    $("#deleteProfileBtn").on('click', deleteUserProfile);
 
-})
-;
+});
 
-function loadDataFromServer(): boolean {
-    let success: boolean = false;
-    $.ajax({
-        url: "userGetProfileInfo.php", method: "GET"
-    }).then(function (dataEx) {
-        let data = JSON.parse(dataEx);
-        let person = data[0];
-        console.log(person);
-        // @ts-ignore
-        document.getElementById("userName").value = (person.u_name).toString();
-        // @ts-ignore
-        document.getElementById("tele").value = (person.u_tele).toString();
-        // @ts-ignore
-        document.getElementById("email").value = (person.u_email).toString();
-        // @ts-ignore
-        $('#profilePic').attr('src', person.u_profile_pic);
-        success = true;
+async function loadDataFromServer() {
+    let form = new FormData();
+    form.append("select", "GET_PROFILE_INFO");
+    let data = await fetch("userAll.php", {
+        method: "POST",
+        body: form
     });
-    return success;
+    let dataEx = await data.json();
+    let person = dataEx[0];
+    console.log(person);
+    // @ts-ignore
+    document.getElementById("userName").value = (person.u_name).toString();
+    // @ts-ignore
+    document.getElementById("tele").value = (person.u_tele).toString();
+    // @ts-ignore
+    document.getElementById("email").value = (person.u_email).toString();
+    // @ts-ignore
+    $('#profilePic').attr('src', person.u_profile_pic);
+
 
 }
 
@@ -121,7 +124,7 @@ function checkPasswordEqual(): boolean {
     }
 }
 
-function uploadData() {
+async function uploadData() {
     let userName = (<HTMLInputElement>document.getElementById("userName")).value;
     let password = (<HTMLInputElement>document.getElementById("password1")).value;
     let email = (<HTMLInputElement>document.getElementById("email")).value;
@@ -131,54 +134,51 @@ function uploadData() {
         if (document.getElementById("password2").value.toString() == "11111122333") {
             password = "";//if the dummy password has not changed, send null
         }
-        $.ajax({
-            url: "updateUser.php", method: "POST", data: {
-                up_username: userName,
-                up_password: password,
-                up_email: email,
-                up_telephone: tele,
-            }
-        }).then(function (data) {
-            console.log("done in ajax");
-            if (data == "SUCCESS") {
-                alert("Success");
-            } else {
-                alert("Failed ")
-            }
-        }, function () {
-            console.log("failed in fail filter")
-            alert("Failed in fail filter");
-        })
-    } else {
-        alert("Invalid data");
-        console.log("invalid data");
-    }
+        let form = new FormData();
+        form.append("select", "UPDATE_PROFILE");
+        form.append("up_username", userName);
+        form.append("up_password", password);
+        form.append("up_email", email);
+        form.append("up_telephone", tele);
+        let data = await fetch("userAll.php", {
+            method: "POST",
+            body: form
+        });
+        let res = await data.text();
+        if (res == "SUCCESS") {
+            alert("Success");
+        } else {
+            alert("Failed ")
+        }
+
 //todo replace the alerts with something proper
 
+    } else {
+        alert("Invalid data");
+    }
 }
 
-//todo upload profile picture part
-
- function deleteUserProfile() {
+function deleteUserProfile() {
     console.log("Trying to delete");
     if (window.confirm("Are you sure you want to delete your profile? ")) { //todo replace confirm
-        let email= (<HTMLInputElement>document.getElementById("deleteEmail")).value;
-        let password=(<HTMLInputElement>document.getElementById("deletePassword")).value;
-        let form =new FormData();
-        form.append("email",email);
-        form.append("password",password);
-        let result = fetch("deleteUserProfile.php", {
+        let email = (<HTMLInputElement>document.getElementById("deleteEmail")).value;
+        let password = (<HTMLInputElement>document.getElementById("deletePassword")).value;
+        let form = new FormData();
+        form.append("email", email);
+        form.append("password", password);
+        form.append("select", "DELETE_USER");
+        let result = fetch("userAll.php", {
             method: "POST",
-            body:form
+            body: form
         });
 
-        let text=result.then(function (data) {
+        let text = result.then(function (data) {
             return data.text();
         });
         text.then(function (data) {
             console.log(data);
-                alert(data);//todo replace alert
-            setTimeout(()=>window.location.replace('../index.html'),1000)
+            alert(data);//todo replace alert
+            setTimeout(() => window.location.replace('start.html'), 1000)
         });
 
     }
