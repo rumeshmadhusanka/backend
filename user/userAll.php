@@ -46,6 +46,9 @@ if ($select == "UPDATE_PROFILE") {
 if ($select == "UPDATE_LOCATION") {
     updateLocation();
 }
+if ($select == "GET_LOCATION"){
+    getLocation();
+}
 if ($select == "GET_PROFILE_INFO") {
     getProfileInfo();
 }
@@ -117,10 +120,6 @@ function signUp()
         echo 'Could not connect to database';
         die();
     }
-//login display
-
-
-
 }
 
 function logout()
@@ -332,14 +331,14 @@ function updateProfile()
 function updateLocation()
 {
     Utilities::verifyLogIn("USER");
-    $userId = $_POST['u_id'];
+    $userId = $_SESSION['u_id'];
     $latitude = $_POST['latitude'];
     $longitude = $_POST['longitude'];
 //DB
     try {
         $result = Database::insert("user_location", array('u_id', 'latitude', 'longitude')
             , array($userId, $latitude, $longitude));
-        if ($result != null) {
+        if ($result != true) {
             $_SESSION['current_location'] = array('latitude' => $latitude, 'longitude' => $longitude);
             echo 'SUCCESS';
         } else {
@@ -347,6 +346,22 @@ function updateLocation()
         }
     } catch (Error $e) {
         echo 'Could not connect to database';
+    }
+}
+
+function getLocation()
+{
+    Utilities::verifyLogIn("USER");
+    $uid = $_SESSION['u_id'];
+    $sql = "select latitude, longitude from user_location 
+where  u_id = :uid 
+order by timestamp 
+desc limit 1";
+    try {
+        $result = Database::run($sql, array(':uid' => $uid));
+        echo json_encode($result);
+    } catch (Error $e) {
+
     }
 }
 
