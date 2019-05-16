@@ -15,6 +15,8 @@ async function login() {
     let resText = await response.text();
     if (resText=="SUCCESS"){
         window.location.replace("servicePage.html");
+    }else {
+        alert("Email or password is incorrect");
     }
 }
 async function signUp() {

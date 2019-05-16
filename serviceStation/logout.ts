@@ -9,7 +9,8 @@ function logout() {
         window.location.replace("start.html");
     });
     res.catch(function () {
-        alert("Could not log out try again");
+        window.location.replace("start.html");
+        //alert("Could not log out try again");
     })
 
 }

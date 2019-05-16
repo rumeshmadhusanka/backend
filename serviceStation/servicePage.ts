@@ -181,7 +181,7 @@ function main() {
     pendingObservable.work(params);
     setInterval(() => {
         pendingObservable.work(params)
-    }, 1000);
+    }, 3000);
 
     let doneObserverFunc = function (data: any) {
 
@@ -208,7 +208,7 @@ function main() {
     doneObservable.work(params2);
     setInterval(() => {
         doneObservable.work(params2)
-    }, 1000);
+    }, 3000);
 }
 
 async function updateService(row: HTMLElement) {
