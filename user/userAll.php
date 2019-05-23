@@ -173,6 +173,7 @@ function getRequestDetails()
     $uid = $_SESSION['u_id'];
     $sql = "select service.service_name,
        service_request.r_description,
+       service_request.r_id,
        service_station.s_name,
        service_station.s_city,
        DATE_FORMAT(service_request.r_submit_time,'%e/%m/%Y %r')

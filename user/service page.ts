@@ -3,6 +3,7 @@ $(function () {
     $("#serviceStationSelection").on("change", getServices);
     displaySearchResults();
     $("#addServiceBtn").on("click", addServiceByStation);
+    showUserRegServices();
     setInterval(showUserRegServices, 2000);
 });
 
