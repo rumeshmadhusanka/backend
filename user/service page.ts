@@ -121,6 +121,7 @@ function showUserRegServices() {
             <td>Description</td>
             <td>Time</td>
             <td>Contact Number</td>
+            <td>Action</td>
         </tr>`;
     let pending = $("#pendingServices");
     let done = $("#doneServices");
@@ -131,6 +132,7 @@ function showUserRegServices() {
     let status = "";
     let time = "";
     let tele = "";
+    let r_id="";
     let form = new FormData();
     form.append("select", "GET_REQUEST_DETAILS");
     fetch("userAll.php", {
@@ -149,14 +151,24 @@ function showUserRegServices() {
         done.append(head);
         //for loop
         for (let i = 0; i < details.length; i++) {
-            let template = `<tr>
+            let templateP = `<tr>
             <td>${station}</td>
             <td>${service}</td>
             <td>${cost}</td>
             <td>${description}</td>
             <td>${time}</td>
             <td><a href="tel:${tele}">${tele}</a></td>
+            <td><input type="button" value="Cancel Request" onclick="cancelRegRequest(${r_id})"></td>
         </tr>`;
+
+            let templateC = `<tr>
+            <td>${station}</td>
+            <td>${service}</td>
+            <td>${cost}</td>
+            <td>${description}</td>
+            <td>${time}</td>
+            <td><a href="tel:${tele}">${tele}</a></td>
+            </tr>`;
             station = details[i].s_name + " :" + details[i].s_city;
             service = details[i].service_name;
             cost = details[i].cost;
@@ -164,14 +176,28 @@ function showUserRegServices() {
             time = details[i].r_submit_time;
             status = details[i].r_status;
             tele = details[i].s_telephone;
+            r_id =details[i].r_id;
             if (status === "PENDING") {
-                pending.append(template);
+                pending.append(templateP);
             } else if (status === "DONE") {
-                done.append(template);
+                done.append(templateC);
             }
 
         }
 
     })
+
+}
+
+async function cancelRegRequest(reqId:string) {
+    let form = new FormData();
+    form.append("select","CANCEL_REQUEST");
+    form.append("r_id",reqId);
+    let res = await fetch("userAll.php",{
+        method:'POST',
+        body:form
+    });
+
+    let text = res.json();
 
 }
