@@ -31,9 +31,8 @@ static public function html_escape($str):string {
 
 static public function searchFromServiceTable($table,$field,$keyWord){
 //$sql = "SELECT * FROM service WHERE service_name LIKE '%%$keyWord%%' LIMIT 3";
-    $result=Database::read($table,$field." LIKE '%%$keyWord%%' LIMIT 5",
-        array(),"*");
-
+    $result=Database::read($table,$field." LIKE '%%$keyWord%%' LIMIT 5", array(),"*");
+    //$result=Database::read($table,$field." contains ".$keyWord." LIMIT 5", array(),"*");
 //display
     if($result!=null){
         $_SESSION['services']=$result;

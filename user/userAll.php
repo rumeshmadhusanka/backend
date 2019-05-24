@@ -6,7 +6,7 @@ require_once '../common/DataType.php';
 require_once '../common/Utilities.php';
 //ServiceStationAll.php
 //test data-----------------------
-$_SESSION['u_id'] = 1;
+//$_SESSION['u_id'] = 1;
 //$_POST['select'] = "SHOW_SALES_STATUS";
 //--------------------------------
 
