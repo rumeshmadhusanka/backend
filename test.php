@@ -23,7 +23,22 @@ require_once 'common/Database.php';
 ////DB
 //echo $result[0]['s_id'];
 //-------------------------------------------
-$i=array("I"=>"uom");
-$j=array("You"=>"uop");
-echo json_encode(array_merge($i,$j));
-header("location: index.html");
+//$i=array("I"=>"uom");
+//$j=array("You"=>"uop");
+//echo json_encode(array_merge($i,$j));
+//header("location: index.html");
+
+function random_str($length, $keyspace = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ')
+{
+    $pieces = [];
+    $max = mb_strlen($keyspace, '8bit') - 1;
+    for ($i = 0; $i < $length; ++$i) {
+        try {
+            $pieces [] = $keyspace[random_int(0, $max)];
+        } catch (Exception $e) {
+
+        }
+    }
+    return implode('', $pieces);
+}
+echo random_str(32);

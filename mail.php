@@ -1,13 +1,11 @@
 <?php
 $verificationCode= $_POST['code'];
-$emailHeading = $_POST['emailHeading'];
-$contentHeading = $_POST['contentHeading']="Please Verify Your Account by Clicking the Link Below.";
 
 $msg = "<html lang='en'>";
 $msg = wordwrap($msg,70);
 $msg.=wordwrap("<body>",70);
-$msg.=wordwrap("<h2>".$contentHeading."</h2>",70);
-$msg.=wordwrap("<a href='localhost/abc/common/verify.php'>Click here to verify</a>",70);
+$msg.=wordwrap("<h2>"."Please Verify Your Account by Clicking the Link Below."."</h2>",70);
+$msg.=wordwrap("<a href='//localhost/abc/common/verify.php?'>Click here to verify</a>",70);
 $msg.=wordwrap("<p style='text-align: left; text-decoration-color: #1b1e21'>Thank you<br>ServiceMe Team.</p>",70);
 $msg.=wordwrap("</body>",70);
 $msg.=wordwrap("</html>",70);
