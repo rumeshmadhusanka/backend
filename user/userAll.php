@@ -6,7 +6,7 @@ require_once '../common/DataType.php';
 require_once '../common/Utilities.php';
 //ServiceStationAll.php
 //test data-----------------------
-//$_SESSION['u_id'] = 1;
+$_SESSION['u_id'] = 1;
 //$_POST['select'] = "SHOW_SALES_STATUS";
 //--------------------------------
 
@@ -54,6 +54,9 @@ if ($select == "GET_PROFILE_INFO") {
 }
 if ($select == "CANCEL_REQUEST") {
     cancelRequest();
+}
+if ($select == "VERIFY_EMAIL"){
+    verifyEmail();
 }
 
 function login()
@@ -394,4 +397,51 @@ function cancelRequest()
         echo 'Database Error';
     }
     echo "SUCCESS";
+}
+
+function verifyEmail(){
+    function random_str($length, $keyspace = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ')
+    {
+        $pieces = [];
+        $max = mb_strlen($keyspace, '8bit') - 1;
+        for ($i = 0; $i < $length; ++$i) {
+            try {
+                $pieces [] = $keyspace[random_int(0, $max)];
+            } catch (Exception $e) {
+
+            }
+        }
+        return implode('', $pieces);
+    }
+    Utilities::verifyLogIn("USER");
+    $uId=$_SESSION['u_id'];
+    $code = random_str(90);
+    echo $uId;
+    try{
+
+//        $result = Database::read("user","u_id = :uid",
+//            array(':uid',$uId));
+//       $email = $result[0]['u_email'];
+
+        Database::insert("verification_code",array('id','value'),
+            array($uId,$code));
+
+        $msg = "<html lang='en'>";
+        $msg = wordwrap($msg,70);
+        $msg.=wordwrap("<body>",70);
+        $msg.=wordwrap("<h2>"."Please Verify Your Account by Clicking the Link Below."."</h2>",70);
+        $msg.=wordwrap("<a href=//localhost/abc/common/verify.php?code=".$code."&id=".$uId.">Click here to verify</a>",70);
+        $msg.=wordwrap("<p style='text-align: left; text-decoration-color: #1b1e21'>Thank you<br>ServiceMe Team.</p>",70);
+        $msg.=wordwrap("</body>",70);
+        $msg.=wordwrap("</html>",70);
+
+        $headers = "MIME-Version: 1.0\r\n";
+        $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
+        // send email
+        mail("rumesh.m.s16@gmail.com","ServiceMe account verification",$msg,$headers);
+        //todo get email address from database
+        echo "Sending email";
+    }catch (Error $e){
+echo "Error";
+    }
 }
