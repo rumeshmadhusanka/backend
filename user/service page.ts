@@ -1,5 +1,6 @@
 $(function () {
     getServiceStations();
+    showAllServiceStations();
     $("#serviceStationSelection").on("change", getServices);
     displaySearchResults();
     $("#addServiceBtn").on("click", addServiceByStation);
@@ -200,5 +201,49 @@ async function cancelRegRequest(reqId:string) {
     });
 
     let text = res.json();
+
+}
+
+async function showAllServiceStations() {
+    let form = new FormData();
+    form.append("select", "GET_ALL_SERVICE_STATIONS");
+    let res = await fetch("userAll.php", {
+        method: "POST",
+        body: form
+    });
+    let stations = await res.json();
+    let endPoint = $("#serviceStationBoxes");
+    endPoint.empty();
+    console.log(stations);
+    for (let i = 0; i < stations.length; i++) {
+        let sName = stations[i].s_name;
+        let address = stations[i].s_address;
+        let description = stations[i].s_decription;
+        let telephone = stations[i].s_telephone;
+        let img = stations[i].s_picture;
+        let template = `<div class="myBox">
+            <img src="${img}" class="modal-avatar img-circle" alt="Logo">
+            <table>
+                <tr>
+                    <td>Name</td>
+                    <td>${sName}</td>
+                </tr>
+                <tr>
+                    <td>Address</td>
+                    <td>${address}</td>
+                </tr>
+                <tr>
+                    <td>Description</td>
+                    <td>${description}</td>
+                </tr>
+                <tr>
+                    <td>Telephone</td>
+                    <td>${telephone}</td>
+                </tr>
+            </table>
+        </div>`;
+
+        endPoint.append(template);
+    }
 
 }

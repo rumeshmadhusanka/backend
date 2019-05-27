@@ -7,7 +7,7 @@ require_once '../common/Utilities.php';
 //ServiceStationAll.php
 //test data-----------------------
 $_SESSION['u_id'] = 1;
-//$_POST['select'] = "SHOW_SALES_STATUS";
+//$_POST['select'] = "GET_ALL_SERVICE_STATIONS";
 //--------------------------------
 
 //get data to select the function
@@ -57,6 +57,10 @@ if ($select == "CANCEL_REQUEST") {
 }
 if ($select == "VERIFY_EMAIL"){
     verifyEmail();
+}
+
+if ($select == "GET_ALL_SERVICE_STATIONS"){
+    getAllServiceStations();
 }
 
 function login()
@@ -443,5 +447,24 @@ function verifyEmail(){
         echo "Sending email";
     }catch (Error $e){
 echo "Error";
+    }
+}
+
+function getAllServiceStations(){
+    Utilities::verifyLogIn("USER");
+    try {
+        $sql = "SELECT 
+       s_id,s_telephone,s_city,s_name,s_address,s_description,s_picture,s_description,s_address 
+FROM service_station";
+        $result = Database::run($sql);
+        $result->setFetchMode(PDO::FETCH_ASSOC);
+        $rows = array();
+        while ($row = $result->fetch()) {
+            $rows[] = $row;
+        }
+        echo json_encode($rows);
+
+    } catch (Error $e) {
+        echo "DB error";
     }
 }
