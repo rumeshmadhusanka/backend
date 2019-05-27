@@ -110,5 +110,3 @@ class Coordinate extends DataType{
     }
 }
 
-$email = new Coordinate("j");
-echo $email->validate();
