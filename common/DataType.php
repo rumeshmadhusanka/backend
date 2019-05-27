@@ -46,7 +46,7 @@ class Email extends DataType
 
     final public function validate(): bool
     {
-        if (!preg_match("/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/",$this->value)){
+        if (!preg_match("/^(([^<>()\[\]\\.,;:\s@\"]+(\.[^<>()\[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/",$this->value)){
             $this->validationStatus=false;
         }
         else{
@@ -101,7 +101,14 @@ class City extends DataType{
 class Coordinate extends DataType{
     public function validate(): bool
     {
-        $this->validationStatus=true;
-        return true;//-----------------------------------------------------------
+        if (!preg_match("/^-?(0|[1-9]\d*)(\.\d+)?$/",$this->getValue())){
+            $this->validationStatus=false;
+        }else {
+            $this->validationStatus = true;
+        }
+        return $this->validationStatus;//-----------------------------------------------------------
     }
 }
+
+$email = new Coordinate("j");
+echo $email->validate();
