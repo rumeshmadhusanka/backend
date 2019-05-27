@@ -3,7 +3,7 @@
 
 class Logger
 {
-    static $file = "../logfile.txt";
+    private static $file = "../logfile.txt";
 
     public function log($msg)
     {
@@ -12,5 +12,3 @@ class Logger
     }
 }
 
-$l = new Logger();
-$l->log("This is a log");
