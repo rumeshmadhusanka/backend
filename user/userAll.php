@@ -6,7 +6,7 @@ require_once '../common/DataType.php';
 require_once '../common/Utilities.php';
 //ServiceStationAll.php
 //test data-----------------------
-$_SESSION['u_id'] = 1;
+//$_SESSION['u_id'] = 1;
 //$_POST['select'] = "GET_ALL_SERVICE_STATIONS";
 //--------------------------------
 
@@ -58,7 +58,6 @@ if ($select == "CANCEL_REQUEST") {
 if ($select == "VERIFY_EMAIL"){
     verifyEmail();
 }
-
 if ($select == "GET_ALL_SERVICE_STATIONS"){
     getAllServiceStations();
 }
@@ -423,9 +422,9 @@ function verifyEmail(){
     echo $uId;
     try{
 
-//        $result = Database::read("user","u_id = :uid",
-//            array(':uid',$uId));
-//       $email = $result[0]['u_email'];
+        $result = Database::read("user","u_id = :uid",
+            array(':uid',$uId));
+       $email = $result[0]['u_email'];
 
         Database::insert("verification_code",array('id','value'),
             array($uId,$code));
@@ -442,7 +441,7 @@ function verifyEmail(){
         $headers = "MIME-Version: 1.0\r\n";
         $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
         // send email
-        mail("rumesh.m.s16@gmail.com","ServiceMe account verification",$msg,$headers);
+        mail($email,"ServiceMe account verification",$msg,$headers);
         //todo get email address from database
         echo "Sending email";
     }catch (Error $e){
