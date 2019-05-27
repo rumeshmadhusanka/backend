@@ -4,6 +4,7 @@ header('Access-Control-Allow-Origin: *');
 require_once '../common/Database.php';
 require_once '../common/DataType.php';
 require_once '../common/Utilities.php';
+require_once '../common/Logger.php';
 //ServiceStationAll.php
 //test data-----------------------
 $_SESSION['s_id'] = 1;
