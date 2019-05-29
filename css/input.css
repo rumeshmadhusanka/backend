@@ -1,0 +1,17 @@
+.input-group{
+    width: 100px;
+    height: 30px;
+}
+.input-group .input-area{
+    border: 1px solid #dadce0;
+    padding: 11px 15px;
+    font-size: 13px;
+    border-radius: 3px;
+}
+.input-group .input-area:focus{
+    border: 2px solid royalblue;
+}
+.input-group .label{
+    color: #8d8d8d;
+    top: 100px;
+}
