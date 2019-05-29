@@ -2,35 +2,200 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>login</title>
+    <title>Service Center Sign-Up/Login Form</title>
+    <link href='https://fonts.googleapis.com/css?family=Titillium+Web:400,300,600' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <link rel="stylesheet" href="../css/signInCenter.css">
 </head>
 <body>
-<script type="text/javascript" src="../node_modules/jquery/dist/jquery.js"></script>
-<h1>Login</h1>
-<script type="text/javascript" src="start.js"></script>
-<form method="POST" autocomplete="on" id="loginForm">
-    <input type="email" placeholder="Email" name="email" autocomplete="email">
-    <input type="password" placeholder="Password" name="password" autocomplete="password">
-    <input type="button" id="submitLogin" value="Login">
-</form>
+    <div></div>
+    <div class="wrapper">
+        <div class="nav" >
+            <div class="logo">
+                <img src="../images/NavLogo.png" id="logoNav"  >
+            </div>
+            <div class="navMenu">
+                <ul>
+                    <li><a href="../index.html"><button class="btn type2">Start page</button></a></li>
+                    <li><a href="#"><button class="btn type2">About</button></a></li>
+                    <!--<li><a href="#"><button class="btn type2">Update profile</button></a></li>-->
+                    <!--<li><a href="#"><button class="btn type1">Join Now</button></a></li>-->
+                    <!--<li><a href="#"><button class="btn type1">Sign in</button></a></li>-->
+                </ul>
+            </div>
+
+
+
+        </div>
+
+    </div>
+
+
+
+    <script type="text/javascript" src="../node_modules/jquery/dist/jquery.js"></script>
+    <script type="text/javascript" src="start.js"></script>
+    <div class="imgContainer"><img class="leftLogoImage" src="../images/SignINFront.png"></div>
+    <div class="form">
+
+        <ul class="tab-group">
+            <li class="tab"><a href="#login">Log In</a></li>
+            <li class="tab active"><a href="#signup">Sign Up</a></li>
+
+        </ul>
+
+        <div class="tab-content">
+
+            <div id="login">
+                <h1>Welcome Back!</h1>
+                <!--<form method="POST" autocomplete="on" id="loginForm">-->
+                    <!--<input type="email" placeholder="Email" name="email" autocomplete="email">-->
+                    <!--<input type="password" placeholder="Password" name="password" autocomplete="password">-->
+                    <!--<input type="button" id="submitLogin" value="Login">-->
+                <!--</form>-->
+
+                <form method="POST" autocomplete="on" id="loginForm">
+
+                    <div class="field-wrap">
+                        <label>
+                            Email Address<span class="req">*</span>
+                        </label>
+                        <input type="email"  name="email" autocomplete="email">
+                    </div>
+
+                    <div class="field-wrap">
+                        <label>
+                            Password<span class="req">*</span>
+                        </label>
+                        <input type="password" name="password" autocomplete="password">
+                    </div>
+
+                    <p class="forgot"><a href="#">Forgot Password? </a></p>
+
+                    <input type="button" class="button button-block" id="submitLogin" value="Login">
+
+
+
+                </form>
+
+            </div>
+
+            <div id="signup">
+                <h1 style="font-weight: 400">Sign Up for Free</h1>
+
+                <form action="/" method="post" autocomplete="on" id="signUpForm">
+
+
+                    <div class="field-wrap">
+                        <label>
+                            Company Name<span class="req">*</span>
+                        </label>
+                        <input type="text" required autocomplete="off" name="name"/>
+                    </div>
+
+                    <div class="field-wrap">
+                        <label>
+                            Email Address<span class="req">*</span>
+                        </label>
+                        <input type="email" required autocomplete="off" autocomplete="email" name="email"/>
+                    </div>
+                    <div class="field-wrap">
+                        <label>
+                            Contact Number<span class="req">*</span>
+                        </label>
+                        <input type="tel"required autocomplete="off" name="telephone"/>
+                    </div>
+
+                    <div class="field-wrap">
+                        <label>
+                            Address<span class="req">*</span>
+                        </label>
+                        <input type="text" required autocomplete="off" name="city"/>
+                    </div>
+
+                    <div class="field-wrap">
+                        <label>
+                            Set A Password<span class="req">*</span>
+                        </label>
+                        <input type="password"required autocomplete="off" />
+                    </div>
+
+                    <div class="field-wrap">
+                        <label>
+                            Confirm Password<span class="req">*</span>
+                        </label>
+                        <input type="password"required name="password" autocomplete="password"/>
+                    </div>
+                    <div class="field-wrap">
+                        <input type="hidden" placeholder="latitude" name="latitude">
+                        <input type="hidden" placeholder="longitude" name="longitude">
+                    </div>
+
+                    <button type="submit" class="button button-block" id="signUpBtn" value="Sign Up"/>Join Now</button>
+
+                </form>
+
+            </div>
+            <!--<form  method="post" autocomplete="on" id="signUpForm">-->
+            <!--<input type="text" placeholder="Username" name="name">-->
+            <!--<input type="email" autocomplete="email" name="email" placeholder="Email">-->
+            <!--<input type="tel" placeholder="mobile" name="telephone">-->
+            <!--<input type="password" placeholder="password" name="password" autocomplete="password">-->
+            <!--<input type="text" placeholder="City" name="city">-->
+            <!--    todo replace with maps values-->
+            <!--<input type="text" placeholder="latitude" name="latitude">-->
+            <!--<input type="text" placeholder="longitude" name="longitude">-->
+            <!--<input type="button" id="signUpBtn" value="Sign Up">-->
+            <!--</form>-->
+
+
+        </div><!-- tab-content -->
+
+    </div>
+
+    <!--<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>-->
+
+    <script  src="../js/signIn.js"></script>
+
+
+
+
+
+
+
+
+<!--<script type="text/javascript" src="../node_modules/jquery/dist/jquery.js"></script>-->
+
+<!--<script type="text/javascript" src="start.js"></script>-->
+<!--<form method="POST" autocomplete="on" id="loginForm">-->
+    <!--<input type="email" placeholder="Email" name="email" autocomplete="email">-->
+    <!--<input type="password" placeholder="Password" name="password" autocomplete="password">-->
+    <!--<input type="button" id="submitLogin" value="Login">-->
+<!--</form>-->
 <!---->
 <h1>Sign Up</h1>
-<form  method="post" autocomplete="on" id="signUpForm">
-    <input type="text" placeholder="Username" name="name">
-    <input type="email" autocomplete="email" name="email" placeholder="Email">
-    <input type="tel" placeholder="mobile" name="telephone">
-    <input type="password" placeholder="password" name="password" autocomplete="password">
-    <input type="text" placeholder="City" name="city">
-<!--    todo replace with maps values-->
-    <input type="text" placeholder="latitude" name="latitude">
-    <input type="text" placeholder="longitude" name="longitude">
-    <input type="button" id="signUpBtn" value="Sign Up">
-</form>
-<a href="start.html">start page</a>
-<a href="profile.html">Profile</a>
-<a href="servicePage.html">Service Page</a>
-<a href="sales.html">Sales Page</a>
-<a href="" onclick="logout()">Logout</a>
+    <!--===============================================================================-->
+    <!--Map-->
+    <div id="mapLoc" align="center"></div>
+    <input type="text" id="latitude" value="51.5" hidden>
+    <input type="text" id="longitude" value="3.67" hidden>
+    <script type="text/javascript"
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5Jrp9PtHe0WapppUzxbIpMDWMAcV3qE4"></script>
+    <script src="https://unpkg.com/location-picker/dist/location-picker.min.js"></script>
+    <script type="text/javascript" src="mapStation.js"></script>
+    <style type="text/css">
+        #mapLoc {
+            width: 750px;
+            height: 480px;
+
+        }
+
+    </style>
+    <!--Map ends================================================================-->
+<!--<a href="start.html">start page</a>-->
+<!--<a href="profile.html">Profile</a>-->
+<!--<a href="servicePage.html">Service Page</a>-->
+<!--<a href="sales.html">Sales Page</a>-->
+<!--<a href="" onclick="logout()">Logout</a>-->
 <script type="text/javascript" src="logout.js"></script>
 </body>
 </html>

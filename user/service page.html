@@ -3,289 +3,414 @@
 <head>
     <meta charset="UTF-8">
     <title>Service page</title>
+
+    <link rel="stylesheet" href="../node_modules/mdbootstrap/css/bootstrap.css">
+
+    <link rel="stylesheet" href="../node_modules/font-awesome/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="../css/navigation.css">
+    <link rel="stylesheet" href="../css/service%20page.css">
+
+
 </head>
 <body>
-<!--todo add a slider to switch between two methods of finding a service-->
-<h1>Add new service request</h1>
-<script type="text/javascript" src="../node_modules/jquery/dist/jquery.js"></script>
-<script type="text/javascript" src="service page.js"></script>
-<div id="viaServiceStation">
-    <form name="serviceForm">
-        <label>service station</label>
-        <select name="serviceStation" id="serviceStationSelection">
-            <option value="">---------</option>
-        </select>
 
-        <label>Available Services</label>
-        <select name="service" id="availableServices">
-            <option value="">---------</option>
-        </select>
-        <label>Description</label>
-        <input type="text" id="description1">
-    </form>
-    <div>
-        <input type="button" value="Request selected service" id="addServiceBtn">
-    </div>
-</div>
-<div id="viaService">
-    <form autocomplete="off" action="">
-        <div class="autocomplete" style="width:300px">
-            <input type="text" placeholder="Search" name="keyword" id="search">
+<div class="wrapper">
+    <div class="nav" >
+        <div class="logo">
+            <img src="../images/NavLogo.png"  id="logoNav"  >
         </div>
-        <!--    css  and js scripts for the auto complete-->
-        <script type="text/css">
-            * {
-                box-sizing: border-box;
-            }
+        <div class="navMenu">
+            <ul>
+                <li><a href="../index.html"><button class="btn type2" onclick="logoutUser()" >Home</button></a></li>
+                <li><a href="#" ><button class="btn type2"  >About</button></a></li>
+                <li><a href="userProfileUpdate.html"><button class="btn type1" >Update Profile</button></a></li>
+                <li><a onclick="logoutUser()" ><button class="btn type1" >Log Out</button></a></li>
+            </ul>
+        </div>
 
-            body {
-                font: 16px Arial;
-            }
 
-            .autocomplete {
-                /*the container must be positioned relative:*/
-                position: relative;
-                display: inline-block;
-            }
 
-            input {
-                border: 1px solid transparent;
-                background-color: #f1f1f1;
-                padding: 10px;
-                font-size: 16px;
-            }
+    </div>
 
-            input[type=text] {
-                background-color: #f1f1f1;
-                width: 100%;
-            }
-
-            input[type=submit] {
-                background-color: DodgerBlue;
-                color: #fff;
-            }
-
-            .autocomplete-items {
-                position: absolute;
-                border: 1px solid #d4d4d4;
-                border-bottom: none;
-                border-top: none;
-                z-index: 99;
-                /*position the autocomplete items to be the same width as the container:*/
-                top: 100%;
-                left: 0;
-                right: 0;
-            }
-
-            .autocomplete-items div {
-                padding: 10px;
-                cursor: pointer;
-                background-color: #fff;
-                border-bottom: 1px solid #d4d4d4;
-            }
-
-            .autocomplete-items div:hover {
-                /*when hovering an item:*/
-                background-color: #e9e9e9;
-            }
-
-            .autocomplete-active {
-                /*when navigating through the items using the arrow keys:*/
-                background-color: DodgerBlue !important;
-                color: #ffffff;
-            }
-        </script>
-        <script type="text/javascript">
-            function autocomplete(inp, arr) {
-                /*the autocomplete function takes two arguments,
-                the text field element and an array of possible autocompleted values:*/
-                var currentFocus;
-                /*execute a function when someone writes in the text field:*/
-                inp.addEventListener("input", function (e) {
-                    var a, b, i, val = this.value;
-                    /*close any already open lists of autocompleted values*/
-                    closeAllLists();
-                    if (!val) {
-                        return false;
-                    }
-                    currentFocus = -1;
-                    /*create a DIV element that will contain the items (values):*/
-                    a = document.createElement("DIV");
-                    a.setAttribute("id", this.id + "autocomplete-list");
-                    a.setAttribute("class", "autocomplete-items");
-                    /*append the DIV element as a child of the autocomplete container:*/
-                    this.parentNode.appendChild(a);
-                    /*for each item in the array...*/
-                    for (i = 0; i < arr.length; i++) {
-                        /*check if the item starts with the same letters as the text field value:*/
-                        if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
-                            /*create a DIV element for each matching element:*/
-                            b = document.createElement("DIV");
-                            /*make the matching letters bold:*/
-                            b.innerHTML = "<strong>" + arr[i].substr(0, val.length) + "</strong>";
-                            b.innerHTML += arr[i].substr(val.length);
-                            /*insert a input field that will hold the current array item's value:*/
-                            b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
-                            /*execute a function when someone clicks on the item value (DIV element):*/
-                            b.addEventListener("click", function (e) {
-                                /*insert the value for the autocomplete text field:*/
-                                inp.value = this.getElementsByTagName("input")[0].value;
-                                /*close the list of autocompleted values,
-                                (or any other open lists of autocompleted values:*/
-                                closeAllLists();
-                            });
-                            a.appendChild(b);
-                        }
-                    }
-                });
-                /*execute a function presses a key on the keyboard:*/
-                inp.addEventListener("keydown", function (e) {
-                    var x = document.getElementById(this.id + "autocomplete-list");
-                    if (x) x = x.getElementsByTagName("div");
-                    if (e.keyCode == 40) {
-                        /*If the arrow DOWN key is pressed,
-                        increase the currentFocus variable:*/
-                        currentFocus++;
-                        /*and and make the current item more visible:*/
-                        addActive(x);
-                    } else if (e.keyCode == 38) { //up
-                        /*If the arrow UP key is pressed,
-                        decrease the currentFocus variable:*/
-                        currentFocus--;
-                        /*and and make the current item more visible:*/
-                        addActive(x);
-                    } else if (e.keyCode == 13) {
-                        /*If the ENTER key is pressed, prevent the form from being submitted,*/
-                        e.preventDefault();
-                        if (currentFocus > -1) {
-                            /*and simulate a click on the "active" item:*/
-                            if (x) x[currentFocus].click();
-                        }
-                    }
-                });
-
-                function addActive(x) {
-                    /*a function to classify an item as "active":*/
-                    if (!x) return false;
-                    /*start by removing the "active" class on all items:*/
-                    removeActive(x);
-                    if (currentFocus >= x.length) currentFocus = 0;
-                    if (currentFocus < 0) currentFocus = (x.length - 1);
-                    /*add class "autocomplete-active":*/
-                    x[currentFocus].classList.add("autocomplete-active");
-                }
-
-                function removeActive(x) {
-                    /*a function to remove the "active" class from all autocomplete items:*/
-                    for (var i = 0; i < x.length; i++) {
-                        x[i].classList.remove("autocomplete-active");
-                    }
-                }
-
-                function closeAllLists(elmnt) {
-                    /*close all autocomplete lists in the document,
-                    except the one passed as an argument:*/
-                    var x = document.getElementsByClassName("autocomplete-items");
-                    for (var i = 0; i < x.length; i++) {
-                        if (elmnt != x[i] && elmnt != inp) {
-                            x[i].parentNode.removeChild(x[i]);
-                        }
-                    }
-                }
-
-                /*execute a function when someone clicks in the document:*/
-                document.addEventListener("click", function (e) {
-                    closeAllLists(e.target);
-                });
-            }
-
-            var services = [];//----------------------------------------------------
-            $(function () {
-                $("#search").on('keyup', search);
-                console.log("start");
-            });
-
-            function search() {
-                var input = ($('#search').val());
-                var endpoint = services;
-                services = [];
-                console.log("inside search");
-                if (input === "") {
-                    console.log("empty query");
-                    endpoint.innerHTML = "";
-                }
-                $.ajax({
-                    url: "../common/search.php",
-                    type: "GET",
-                    data: {
-                        keyword: input,
-                        table: "service"
-                    },
-                    success: function (data) {
-                        console.log("Ajax sucess");
-                        if (data != 'NULL') {
-                            var ans = void 0;
-                            try {
-                                ans = JSON.parse(data);
-                            } catch (e) {
-                                console.log("json parse error");
-                                return;
-                            }
-                            endpoint.innerHTML = "";
-                            for (var i = 0; i < ans.length; i++) {
-                                endpoint.push(ans[i].service_name);
-                            }
-                        } else {
-                            endpoint = [];
-                            console.log("NULL");
-                        }
-                    },
-                    error: function (data) {
-                        console.log("Error" + data);
-                    }
-                });
-            }
-
-            autocomplete(document.getElementById("search"), services);
-        </script>
-        <select name="serviceStation" id="serviceStationSelection2">
-        </select>
-    </form>
 </div>
+
+
+
+
+    <div class="row" style="width: 100%; padding: 0; margin: 0; margin-top: 90px;">
+        <div class="col-md-6 left" style="padding: 0;margin: 0;">
+
+
+            <div class="row" style="height: 20%;width: 100%;">
+
+                <h1>Add new service request</h1>
+                <script type="text/javascript" src="../node_modules/jquery/dist/jquery.js"></script>
+                <script type="text/javascript" src="service page.js"></script>
+                <div id="viaServiceStation">
+                    <form name="serviceForm">
+                        <label>service station</label>
+                        <select name="serviceStation" id="serviceStationSelection">
+                            <option value="">---------</option>
+                        </select>
+
+                        <label>Available Services</label>
+                        <select name="service" id="availableServices">
+                            <option value="">---------</option>
+                        </select>
+                        <label>Description</label>
+                        <input type="text" id="description1">
+                    </form>
+                    <div>
+                        <input type="button" value="Request selected service" id="addServiceBtn">
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="height: 80%;width: 100%;">
+                <!--map start-->
+                <div id="map"></div>
+                <script type="text/javascript"
+                        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5Jrp9PtHe0WapppUzxbIpMDWMAcV3qE4"></script>
+                <script src="https://unpkg.com/location-picker/dist/location-picker.min.js"></script>
+                <script type="text/javascript" src="shortestDistance.js"></script>
+                <style type="text/css">
+                    #map {
+                        width: 750px;
+                        height: 480px;
+
+                    }
+
+                </style>
+                <!--Map end-->
+            </div>
+
+
+        </div>
+        <div class="col-md-6 right" style="width: 100%;padding: 0;margin: 0;">
+            <div class="row" style="height: 20%;">
+                <div class="col-12">
+                    <div id="viaService">
+                        <form autocomplete="off" action="">
+                            <div class="autocomplete" style="width:700px; position: relative;">
+                                <input list="datalist1" type="text" placeholder="Search" name="keyword" id="search" style="width:80%; height: 50px; font-size: 20px;">
+                                <i class="fa fa-search fa-fw  fa-lg"></i>
+                            </div>
+                            <!--    css  and js scripts for the auto complete-->
+                            <script type="text/css">
+                                * {
+                                    box-sizing: border-box;
+                                    border: black 3px solid;
+                                }
+
+                                body {
+                                    font: 17px "Comic Sans MS";
+                                }
+
+                                .autocomplete {
+                                    /*the container must be positioned relative:*/
+                                    position: relative;
+                                    display: inline-block;
+                                }
+
+                                input {
+                                    border: 1px solid transparent;
+                                    background-color: #f1f1f1;
+                                    padding: 10px;
+                                    font-size: 16px;
+                                }
+
+                                input[type=text] {
+                                    background-color: #f1f1f1;
+                                    width: 100%;
+                                }
+
+                                input[type=submit] {
+                                    background-color: #3b3b3b;
+                                    color: #fff;
+                                }
+
+                                .autocomplete-items {
+                                    position: absolute;
+                                    border: 1px solid #d4d4d4;
+                                    background-color: #e0a800;
+                                    border-bottom: none;
+                                    border-top: none;
+                                    z-index: 99;
+                                    /*position the autocomplete items to be the same width as the container:*/
+                                    top: 100%;
+                                    left: 10px;
+                                    right: 0;
+                                }
+
+                                .autocomplete-items div {
+                                    padding: 10px;
+                                    cursor: pointer;
+                                    background-color: #fff;
+                                    border-bottom: 1px solid #d4d4d4;
+                                }
+
+                                .autocomplete-items div:hover {
+                                    /*when hovering an item:*/
+                                    background-color: #e9e9e9;
+                                }
+
+                                .autocomplete-active {
+                                    /*when navigating through the items using the arrow keys:*/
+                                    background-color: DodgerBlue !important;
+                                    color: #ffffff;
+                                }
+                            </script>
+                            <datalist id="datalist1">
+                                <option value=""></option>
+                            </datalist>
+                            <script type="text/javascript">
+                                function autocomplete(inp, arr) {
+                                    /*the autocomplete function takes two arguments,
+                                    the text field element and an array of possible autocompleted values:*/
+                                    var currentFocus;
+                                    /*execute a function when someone writes in the text field:*/
+                                    inp.addEventListener("input", function (e) {
+                                        var a, b, i, val = this.value;
+                                        /*close any already open lists of autocompleted values*/
+                                        closeAllLists();
+                                        if (!val) {
+                                            return false;
+                                        }
+                                        currentFocus = -1;
+                                        /*create a DIV element that will contain the items (values):*/
+                                        a = document.createElement("DIV");
+                                        a.setAttribute("id", this.id + "autocomplete-list");
+                                        a.setAttribute("class", "autocomplete-items");
+                                        /*append the DIV element as a child of the autocomplete container:*/
+                                        this.parentNode.appendChild(a);
+                                        /*for each item in the array...*/
+                                        for (i = 0; i < arr.length; i++) {
+                                            /*check if the item starts with the same letters as the text field value:*/
+                                            if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
+                                                /*create a DIV element for each matching element:*/
+                                                b = document.createElement("DIV");
+                                                /*make the matching letters bold:*/
+                                                b.innerHTML = "<strong>" + arr[i].substr(0, val.length) + "</strong>";
+                                                b.innerHTML += arr[i].substr(val.length);
+                                                /*insert a input field that will hold the current array item's value:*/
+                                                b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
+                                                /*execute a function when someone clicks on the item value (DIV element):*/
+                                                b.addEventListener("click", function (e) {
+                                                    /*insert the value for the autocomplete text field:*/
+                                                    inp.value = this.getElementsByTagName("input")[0].value;
+                                                    /*close the list of autocompleted values,
+                                                    (or any other open lists of autocompleted values:*/
+                                                    closeAllLists();
+                                                });
+                                                a.appendChild(b);
+                                            }
+                                        }
+                                    });
+                                    /*execute a function presses a key on the keyboard:*/
+                                    inp.addEventListener("keydown", function (e) {
+                                        var x = document.getElementById(this.id + "autocomplete-list");
+                                        if (x) x = x.getElementsByTagName("div");
+                                        if (e.keyCode == 40) {
+                                            /*If the arrow DOWN key is pressed,
+                                            increase the currentFocus variable:*/
+                                            currentFocus++;
+                                            /*and and make the current item more visible:*/
+                                            addActive(x);
+                                        } else if (e.keyCode == 38) { //up
+                                            /*If the arrow UP key is pressed,
+                                            decrease the currentFocus variable:*/
+                                            currentFocus--;
+                                            /*and and make the current item more visible:*/
+                                            addActive(x);
+                                        } else if (e.keyCode == 13) {
+                                            /*If the ENTER key is pressed, prevent the form from being submitted,*/
+                                            e.preventDefault();
+                                            if (currentFocus > -1) {
+                                                /*and simulate a click on the "active" item:*/
+                                                if (x) x[currentFocus].click();
+                                            }
+                                        }
+                                    });
+
+                                    function addActive(x) {
+                                        /*a function to classify an item as "active":*/
+                                        if (!x) return false;
+                                        /*start by removing the "active" class on all items:*/
+                                        removeActive(x);
+                                        if (currentFocus >= x.length) currentFocus = 0;
+                                        if (currentFocus < 0) currentFocus = (x.length - 1);
+                                        /*add class "autocomplete-active":*/
+                                        x[currentFocus].classList.add("autocomplete-active");
+                                    }
+
+                                    function removeActive(x) {
+                                        /*a function to remove the "active" class from all autocomplete items:*/
+                                        for (var i = 0; i < x.length; i++) {
+                                            x[i].classList.remove("autocomplete-active");
+                                        }
+                                    }
+
+                                    function closeAllLists(elmnt) {
+                                        /*close all autocomplete lists in the document,
+                                        except the one passed as an argument:*/
+                                        var x = document.getElementsByClassName("autocomplete-items");
+                                        for (var i = 0; i < x.length; i++) {
+                                            if (elmnt != x[i] && elmnt != inp) {
+                                                x[i].parentNode.removeChild(x[i]);
+                                            }
+                                        }
+                                    }
+
+                                    /*execute a function when someone clicks in the document:*/
+                                    document.addEventListener("click", function (e) {
+                                        closeAllLists(e.target);
+                                    });
+                                }
+
+                                var services = [];//----------------------------------------------------
+                                $(function () {
+                                    $("#search").on('keyup', search);
+                                    console.log("start");
+                                });
+
+                                function search() {
+                                    var input = ($('#search').val());
+                                    var endpoint = services;
+                                    services = [];
+                                    console.log("inside search");
+                                    if (input === "") {
+                                        console.log("empty query");
+                                        endpoint.innerHTML = "";
+                                    }
+                                    $.ajax({
+                                        url: "../common/search.php",
+                                        type: "GET",
+                                        data: {
+                                            keyword: input,
+                                            table: "service"
+                                        },
+                                        success: function (data) {
+                                            console.log("Ajax sucess");
+                                            if (data != 'NULL') {
+                                                var ans = void 0;
+                                                try {
+                                                    ans = JSON.parse(data);
+                                                } catch (e) {
+                                                    console.log("json parse error");
+                                                    return;
+                                                }
+                                                endpoint.innerHTML = "";
+                                                for (var i = 0; i < ans.length; i++) {
+                                                    endpoint.push(ans[i].service_name);
+                                                }
+                                            } else {
+                                                endpoint = [];
+                                                console.log("NULL");
+                                            }
+                                        },
+                                        error: function (data) {
+                                            console.log("Error" + data);
+                                        }
+                                    });
+                                }
+
+                                autocomplete(document.getElementById("search"), services);
+                            </script>
+                            <div class="search_field" style="position: absolute; top: 85px; left: 290px">
+                                <select name="serviceStation" id="serviceStationSelection2" style="width: 300px;top: 200px;" ></select>
+                            </div>
+
+
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="height: 80%;">
+                <div class="col-12 " style="float: left">
+                    <div class="row">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-10">
+                            <div class="row card" >
+                                <div class="col-md-4 loadImg">
+                                    <img src="../images/serviceCenter.png" width="100%" height="100%">
+                                </div>
+                                <div class="col-md-8 card_content">
+                                        <div class="card_name">
+                                            <i class="fa fa-user"></i>
+                                            <span>Name</span>
+                                        </div>
+                                        <div class="card_telephone">
+                                            <i class="fa fa-phone"></i>
+                                            <span >Telephone</span>
+                                        </div>
+                                        <div class="card_email">
+                                            <i class="fa fa-envelope"></i>
+                                            <span >Email</span>
+                                        </div>
+                                    <div class="card_address">
+                                        <i class="fa fa-map-marker"></i>
+                                        <span>Address</span>
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+                        </div>
+                        <div class="col-md-1"></div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+    <div class="bottom">
+        <h2 style="float: left">My pending service requests</h2><br>
+        <div id="userServices" class="userServices" type="hidden">
+            <table id="pendingServices" >
+                <tr>
+                    <td>Service Station</td>
+                    <td>Service Name</td>
+                    <td>Cost</td>
+                    <td>Description</td>
+                    <td>Status</td>
+                    <td>Time</td>
+                    <td>Contact</td>
+                </tr>
+            </table>
+        </div>
+        <h2 style="float: left">My History                    </h2>
+        <div class="completedServices" type="hidden">
+            <table id="doneServices" >
+                <tr>
+                    <td>Service Station</td>
+                    <td>Service Name</td>
+                    <td>Cost</td>
+                    <td>Description</td>
+                    <td>Status</td>
+                    <td>Time</td>
+                    <td>Contact</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+
+
+<!--todo add a slider to switch between two methods of finding a service-->
+
 
 <!--My service requests section-->
-<h2>My pending service requests</h2>
-<div id="userServices">
-    <table id="pendingServices">
-        <tr>
-            <td>Service Station</td>
-            <td>Service Name</td>
-            <td>Cost</td>
-            <td>Description</td>
-            <td>Status</td>
-            <td>Time</td>
-            <td>Contact</td>
-        </tr>
-    </table>
-</div>
-<h2>My History</h2>
-<div>
-    <table id="doneServices">
-        <tr>
-            <td>Service Station</td>
-            <td>Service Name</td>
-            <td>Cost</td>
-            <td>Description</td>
-            <td>Status</td>
-            <td>Time</td>
-            <td>Contact</td>
-        </tr>
-    </table>
-</div>
-<a href="start.html">Start page</a>
-<a href="service%20page.html">Service Page</a>
-<a href="userProfileUpdate.html">Update profile</a>
-<a href="" onclick="logoutUser()">Log out</a>
-<script type="text/javascript" src="logout.js"></script>
+
+<!--<a href="start.html">Start page</a>-->
+<!--<a href="service%20page.html">Service Page</a>-->
+<!--<a href="userProfileUpdate.html">Update profile</a>-->
+<!--<a href="" onclick="logoutUser()">Log out</a>-->
+<!--<script type="text/javascript" src="logout.js"></script>-->
 </body>
 </html>

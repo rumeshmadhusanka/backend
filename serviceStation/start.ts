@@ -22,6 +22,8 @@ async function login() {
 async function signUp() {
     let sign = <HTMLFormElement>document.getElementById("signUpForm");
     let form = new FormData(sign);
+    form.append("latitude",(<HTMLInputElement>document.getElementById("latitude")).value);
+    form.append("longitude",(<HTMLInputElement>document.getElementById("longitude")).value);
     form.append("select", "ADD_STATION");
     let response = await fetch('ServiceStationAll.php', {
         method: "POST",

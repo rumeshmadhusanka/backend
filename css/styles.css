@@ -1,0 +1,575 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    font-family: "Comic Sans MS";
+}
+
+.container {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+
+}
+a{
+    text-decoration: none;
+    text-underline-color: white;
+}
+
+
+/********
+  Navigation
+*********/
+.nav{
+    /*position: absolute;*/
+    top: 0;
+    left: 0;
+    margin: 0;
+    padding-right: 5px;
+    width: 100%;
+    height: 90px;
+    border-bottom: 1px solid rgba(255,255,255,0);
+    position: fixed;
+    z-index: 10;
+    font-family: "Comic Sans MS";
+}
+.logo{
+    border: black 3px;
+    width: 100px;
+    height: 5%;
+    background-color: white;
+}
+
+#logoNav{
+    height: auto;
+    width: 100%;
+
+}
+
+.navMenu{
+    float: right;
+    line-height: 50px;
+
+}
+.navMenu ul{
+    list-style: none;
+}
+.navMenu ul li {
+    display: inline-block;
+    font-weight: bold;
+}
+
+.navMenu ul li a{
+    text-decoration: none;
+    color: #000000;
+    font-size: 18px;
+    padding: 0 20px;
+}
+
+/******
+ Nav Buttons
+*****/
+.button .type2 ,.button .type1{
+    font-weight: bold;
+    font-family: "Arial Rounded MT Bold";
+}
+.button {
+    position: relative;
+    padding: 1em 1em;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    outline: none;
+    font-size: 18px;
+    font-family: "Comic Sans MS";
+}
+
+.button.type1.type1::after, .button.type1.type1::before {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 20%;
+    height: 20%;
+    border: 2px solid;
+    transition: all 0.6s ease;
+    border-radius: 2px;
+}
+.button.type1.type1::after {
+    bottom: 0;
+    right: 0;
+    border-top-color: transparent;
+    border-left-color: transparent;
+    border-bottom-color: #566473;
+    border-right-color: #566473;
+}
+.button.type1.type1::before {
+    top: 0;
+    left: 0;
+    border-bottom-color: transparent;
+    border-right-color: transparent;
+    border-top-color: #566473;
+    border-left-color: #566473;
+}
+.button.type1.type1:hover:after, .button.type1.type1:hover:before {
+    width: 100%;
+    height: 100%;
+}
+.button.type2 {
+    color: #000000;
+}
+.button.type2.type2:after, .button.type2.type2:before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 90%;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #566473;
+    transition: all 0.3s ease;
+    transform: scale(0.85);
+}
+.button.type2.type2:hover:before {
+    top: 0;
+    transform: scale(1);
+}
+.button.type2.type2:hover:after {
+    transform: scale(1);
+}
+
+
+/********
+  body
+*********/
+.left, .right {
+    position: absolute;
+    height: 100%;
+    width: 50%;
+    font-family: "Comic Sans MS";
+
+}
+
+.left {
+    background: #ffffff;
+}
+
+.right {
+    left: 50%;
+    background: #e0e0e0;
+}
+
+/*.logo {*/
+/*line-height: 80px;*/
+/*position: absolute;*/
+/*padding: 10px;*/
+/*}*/
+
+
+/*.logo {*/
+/*padding: 10px 80px 10px 60px;*/
+/*background: #e0e0e0;*/
+/*}*/
+
+
+
+#logo{
+    height: auto;
+    width: 100%;
+}
+
+.product {
+    height: 10%;
+    width: 10%;
+    position: absolute;;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: fly 4s ease-in-out infinite;
+}
+.rotate45 {
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+@keyframes fly {
+    0% {
+        transform: translate(-50%, -46%);
+    }
+
+    50% {
+        transform: translate(-50%, -54%);
+    }
+
+    100% {
+        transform: translate(-50%, -46%);
+    }
+}
+
+
+.left-service{
+    bottom: 20px;
+    left: 100px;
+    position: absolute;
+    align-content: center;
+    text-align: center;
+    padding: 10px;
+}
+
+.serviceLoginQuote{
+    font-family: "Comic Sans MS";
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+    position: center;
+}
+
+.deco{
+    position: initial;
+    height: 70px;
+    width: 80px;
+    float: right;
+    padding-bottom: 10px;
+    padding-left: 10px;
+}
+.serviceIMG{
+    padding: 0;
+    height: 100%;
+    width: 100%;
+}
+
+.left-bottom {
+    position: absolute;
+    left: 1000px;
+    bottom: 38px;
+    letter-spacing: 3px;
+    color: black;
+    text-transform: uppercase;
+    font-size: 12px;
+    font-family: "Comic Sans MS";
+}
+
+.addServiceCenter{
+    position: absolute;
+    background-color: #e0e0e0;
+    left: 350px;
+    bottom: 40px;
+    height: 100px;
+    width: 380px;
+    padding: 0;
+    margin: 0;
+    /*border: black double 5px;*/
+    color: black;
+}
+.buttonAddService{
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    font-size: 30px;
+    align-content: initial;
+    float: right;
+}
+
+
+
+.imageService{
+    padding: 0;
+    margin: 0;
+    left: 0;
+    float: left;
+    clear: both;
+}
+
+.media {
+    position: absolute;
+    bottom: 30px;
+    right: 60px;
+}
+
+.media ul {
+    list-style: none;
+}
+
+.media ul li {
+    display: inline-block;
+}
+
+
+.media ul li:not(:last-child) {
+    padding-right: 40px;
+}
+
+/*******
+Right Slider
+******/
+.containerSlider{
+    background-color:white;
+    width:70%;
+    margin-top: 100px;
+    margin-left: 110px;
+}
+
+.slideshow_wrapper {
+    float: right;
+    width: 100%;
+    height:25%;
+    overflow: hidden;
+    marging-left: 20px;
+    clear: none;
+    background-color: #e0e0e0;
+}
+
+.slideshow {
+    clear: none;
+    width:1530px;
+    height:250px;
+    margin: 0 0 0 -1020px;
+    position: relative;
+    background-color: #e0e0e0;
+    -webkit-animation-name: slide_animation_right;
+    -webkit-animation-duration:12s;
+    -webkit-animation-iteration-count:infinite;
+    -webkit-animation-direction:alternate;
+    -webkit-animation-play-state: running;
+}
+
+.slide {
+    background-color: #e0e0e0;
+    clear: none;
+    width:510px;
+    height: 250px;
+    position:relative;
+    float:left;
+    overflow:hidden;
+
+}
+
+.slideshow img{
+    width:510px; height:250px;
+}
+
+@-webkit-keyframes slide_animation_right {
+
+    0% {left:0px;}
+    10% {left:0px;}
+    20% {left:0px;}
+    30% {left:0px;}
+    40% {left:510px;}
+    50% {left:510px;}
+    60% {left:510px;}
+    70% {left:1020px;}
+    80% {left:1020px;}
+    90% {left:1020px;}
+    100% {left:1020px;}
+
+}
+
+/*******
+Left Slider
+******/
+
+.containerSliderLeft{
+
+    background-color:white;
+    width:80%;
+    margin-top: 100px;
+    margin-left: 50px;
+}
+
+.slideshow_wrapperLeft {
+    /*float: right;*/
+    width: 100%;
+    height:20%;
+    overflow: hidden;
+    marging-left: 20px;
+    clear: none;
+}
+
+.slideshowLeft {
+    clear: none;
+    width:3000px;
+    height:250px;
+    margin: 0 0 0 -2400px;
+    position: relative;
+    -webkit-animation-name: slide_animationLeft;
+    -webkit-animation-duration:20s;
+    -webkit-animation-iteration-count:infinite;
+    -webkit-animation-direction:alternate;
+    -webkit-animation-play-state: running;
+}
+
+.slideLeft {
+    clear: none;
+    width:600px;
+    height: 250px;
+    position:relative;
+    float:left;
+    overflow:hidden;
+
+}
+
+.slideshowLeft img{
+    width:600px; height:250px;
+}
+
+@-webkit-keyframes slide_animationLeft {
+
+    0% {left:0px;}
+    10% {left:0px;}
+    20% {left:600px;}
+    30% {left:600px;}
+    40% {left:1200px;}
+    50% {left:1200px;}
+    60% {left:1800px;}
+    70% {left:1800px;}
+    80% {left:2400px;}
+    90% {left:2400px;}
+    100% {left:2400px;}
+
+}
+
+/*********
+ Services Text
+*********/
+.servicesText{
+    text-align: center;
+    width: 60%;
+    margin: 0;
+    padding: 0;
+    margin-left: 100px;
+
+}
+.servicesTextRight{
+    text-align: center;
+    width: 60%;
+    margin: 0;
+    padding: 0;
+    margin-left: 150px;
+    row-gap: 20px;
+
+
+}
+h1{
+    font-family: "Comic Sans MS";
+    font-size: 25px;
+    text-align: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+h2{
+    align-content: center;
+    font-family: "Comic Sans MS";
+    float: none;
+    font-weight: bold;
+    font-size: 30px;
+    margin: 0;
+    padding: 0;
+}
+
+
+.button28 {
+    color: black;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    transition: all 0.5s;
+    position: relative;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+.button28 span{
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    transition: all 0.5s;
+    font-size: 20px;
+    font-family: "Comic Sans MS";
+    width: 100%;
+}
+.button28 a{
+    color: black;
+    text-decoration: none;
+    display: block;
+    width: 100%;
+}
+.button28::before{
+    content: '';
+    color: black;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    opacity: 0;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    transition: all 0.5s;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-top-style: solid;
+    border-bottom-style: solid;
+    border-top-color: black;
+    border-bottom-color: black;
+    -webkit-transform: scale(0.2, 1);
+    transform: scale(0.2, 1);
+    width: 100%;
+
+}
+.button28:hover span{
+    letter-spacing: 2px;
+    font-size: 25px;
+    color: black;
+    font-weight: bold;
+}
+.button28:hover::before{
+    opacity: 1;
+    -webkit-transform: scale(1, 1);
+    transform: scale(1, 1);
+    width: 100%;
+
+
+}
+.button28::after{
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 3;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    transition: all 0.5s;
+    background-color: rgba(0,0,0,0.5);
+
+
+
+}
+.button28:hover::after{
+    opacity: 0;
+    -webkit-transform: scale(0.2, 1);
+    transform: scale(0.2, 1);
+}
+
+.sim-button{
+    line-height: 50px;
+    height: 50px;
+    text-align: center;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 30px;
+    cursor: pointer;
+    width: 100%;
+    padding: 0;
+    margin-bottom: 0;
+}

@@ -3,7 +3,6 @@
   <component name="SqlDialectMappings">
     <file url="file://$PROJECT_DIR$/Database_Saved/service_me_service.sql" dialect="H2" />
     <file url="file://$PROJECT_DIR$/Database_Saved/service_me_service4.sql" dialect="MariaDB" />
-    <file url="file://$PROJECT_DIR$/common/Database.php" dialect="MySQL" />
     <file url="PROJECT" dialect="MySQL" />
   </component>
 </project>

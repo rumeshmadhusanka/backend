@@ -1,0 +1,159 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+
+    font-family: "Comic Sans MS";
+}
+a{
+    outline: none;
+}
+.bootstrap-iso .form-control{border-width: 2px; border-color: grey;}
+.container {
+    margin-top: 80px;
+    padding: 0;
+    width: 100%;
+
+}
+.btn:focus{
+    outline: none;
+    box-shadow: none;
+}
+.navMenu{
+    float: right !important;
+    padding-left: 850px;
+}
+
+
+/********
+  body
+*********/
+.left, .right {
+    width: 100%;
+    font-family: "Comic Sans MS";
+    height: 600px;
+    padding: 0;
+    margin: 0;
+    /*direction: ltr;*/
+
+}
+.row{
+    float: bottom;
+}
+
+.left {
+    background: #ffffff;
+
+}
+
+.right {
+    background: #e0e0e0;
+    /*direction: rtl;*/
+    /*overflow: auto;*/
+}
+#viaService{
+    background-color: #e0e0e0;
+    width: 100%;
+    height: 100%;
+}
+.bottom{
+    position: absolute;
+    width: 100%;
+}
+.userServices,.completedServices{
+    height: 100%;
+    width: 100%;
+    /*direction: rtl;*/
+
+}
+.completedServices{
+    float: left;
+}
+.autocomplete{
+    position: relative;
+    left: 30px;
+    top: 30px;
+}
+.autocomplete input[type=text]{
+    padding-left: 50px;
+    font-size: 25px;
+
+}
+.autocomplete i{
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    padding: 17px 15px;
+    color: #3b3b3b;
+    transition: 0.3s;
+}
+
+.selectBox{
+    left: 16px;
+    top: 16px;
+}
+
+
+.autocomplete input:focus {
+    outline: none !important;
+    border:1px solid black;
+    box-shadow: 0 0 10px #719ECE;
+
+
+}
+
+.autocomplete input[type=text]:focus+i{
+    color: black;
+}
+.card{
+    align-self: center;
+    width: 100% !important;
+    /*background-color: #e0a800;*/
+    height: 160px !important;;
+    box-shadow: #3b3b3b;
+    border-radius: 4px;
+    align-content: initial;
+    padding: 0;
+    margin: 0;
+}
+.loadImg{
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+
+    float: right;
+    clear: both;
+}
+.card_content{
+    width: 70%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+}
+.card_name,.card_telephone ,.card_address, .card_email{
+    width: 100%;
+    border-radius: 4px;
+    align-content: center;
+}
+.card_name ,.card_email{
+     background-color: white;
+}
+.card_telephone ,.card_address{
+    background-color: #e0e0e0;
+}
+.card_name,.card_telephone,.card_email, .card_address{
+    height: 25%;
+}
+
+
+.card_name i,.card_telephone i,.card_address i, .card_email i{
+    left: 10px !important;
+    padding-left: 20px;
+    padding-top: 10px;
+}
+.card_name span,.card_telephone span ,.card_address span, .card_email span{
+    padding-left: 5px;
+    color: #566473;
+}
+

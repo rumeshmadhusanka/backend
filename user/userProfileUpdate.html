@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta http-equiv="content-type" charset="UTF-8">
     <meta charset="utf-8">
     <title>Profile Edit</title>
     <meta name="generator" content="Bootply"/>
@@ -11,106 +11,147 @@
     <link href="../node_modules/font-awesome/css/font-awesome.css" type="text/css" rel="stylesheet">
     <script type="text/javascript" src="../node_modules/jquery/dist/jquery.js"></script>
 
-    <!-- CSS code from Bootply.com editor -->
+    <link rel="stylesheet" href="../node_modules/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/userProfileUpdate.css"  important! >
 
-    <style type="text/css">
-        /* CSS used here will be applied after bootstrap.css */
-    </style>
+
+
 </head>
 <body>
 <!--===============================================================================-->
+
+<div class="nav" >
+     <div class="logo">
+         <img src="../images/NavLogo.png"  id="logoNav"  >
+     </div>
+     <div class="navMenu">
+          <ul>
+              <li><a href="../index.html" onclick="logoutUser()" ><button class="btnn type2">Home</button></a></li>
+              <li><a href="#"><button class="btnn type2">About</button></a></li>
+              <li><a href="service%20page.html"><button class="btnn type1">Services</button></a></li>
+              <!--<li><a href="#"><button class="btnn type1">Join Now</button></a></li>-->
+              <li><a  onclick="logoutUser()"><button class="btnn type1">Log Out</button></a></li>
+          </ul>
+     </div>
+
+
+
+</div>
+
+
+<!--<div id="image">-->
+    <!--<img src="../images/SignINFront.png">-->
+<!--</div>-->
 <script type="text/javascript" src="userProfileUpdate.js"></script>
-<div class="container">
-    <h1>Edit Profile</h1>
-    <hr>
+<script type="text/javascript" src="logout.js"></script>
+
+<div class="top-container">
     <div class="row">
         <!-- left column -->
-        <div class="col-md-3">
-            <div class="text-center">
+        <div class="left" style="float:left;width:40%;background-color: darkgray;">
+            <div class="text-center ">
+                <h2>Profile Picture</h2>
                 <img src="" class="avatar img-circle" alt="avatar" id="profilePic">
                 <!--                    todo add css to image to control overflow-->
-                <h6>Upload a different photo...</h6>
-                <form id="picForm" name="photo" enctype="multipart/form-data" action="../common/upload.php">
-                    <input type="file" class="form-control" id="profilePicUpload" name="fileToUpload">
-                    <input class="btn btn-primary" type="submit" style="visibility: visible"
+
+                <form id="picForm" name="photo" enctype="multipart/form-data" action="../common/upload.php" style="align-content: center;left: 30px; margin-top: 10px">
+                    <div style="border: darkgray 2px solid; width: 100%;" align="center">
+                        <input type="file" class="form-control " id="profilePicUpload" name="fileToUpload" style="width: 100%; " >
+                    </div>
+
+                    <input class="btn btn-dark" type="submit" style="visibility: visible; width: 80%;"
                            value="Change Profile Picture">
                 </form>
+
             </div>
+            <!--<div class="image">-->
+            <!--<img id="image" src="../images/SignINFront.png" >-->
+            <!--</div>-->
         </div>
 
         <!-- edit form column -->
-        <div class="col-md-9 personal-info">
-            <div class="alert alert-danger alert-dismissable" id="alertBox" style="visibility:visible">
-                <a class="panel-close close" data-dismiss="alert">×</a>
-                <i class="fa fa-coffee"></i>
-                <p id="alertText">This is an <strong>.alert</strong>. Use this to show important messages to the user.
-                </p>
-            </div>
-            <h3>Personal info</h3>
+        <div class="personal-info right" style="width: 60%; float:left;">
+            <h2 style="font-weight: bolder" align="center">Personal info</h2>
             <!--form begins-->
-            <form class="form-horizontal" role="form">
-                <div class="form-group">
+            <form class="form-horizontal " role="form" style="align-content: center">
+                <div class="form-group ">
                     <label class="col-md-3 control-label">Username:</label>
-                    <div class="col-md-8">
+                    <div class="col-md-11 inner-addon left-addon inner-addon-tall">
+                        <i class="fa fa-user fa-lg"></i>
                         <input class="form-control" type="text" value="janeuser" id="userName">
                     </div>
                 </div>
+
+
                 <div class="form-group">
+
                     <label class="col-lg-3 control-label">Email:</label>
-                    <div class="col-lg-8">
+                    <div class="col-md-11 inner-addon left-addon inner-addon-tall">
+                        <i class="fa fa-envelope fa-lg"></i>
                         <input class="form-control" type="text" value="janesemail@gmail.com" id="email">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-md-3 control-label">Mobile Number:</label>
-                    <div class="col-md-8">
+                    <div class="col-md-11 inner-addon left-addon inner-addon-tall">
+                        <i class="fa fa-phone fa-lg"></i>
                         <input class="form-control" type="tel" value="0765645087" id="tele">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-md-3 control-label">Password:</label>
-                    <div class="col-md-8">
+                    <div class="col-md-11 inner-addon left-addon inner-addon-tall">
+                        <i class="fa fa-key fa-lg"></i>
                         <input class="form-control" type="password" value="11111122333" id="password1">
+
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-md-3 control-label">Confirm password:</label>
-                    <div class="col-md-8">
+                    <div class="col-md-11 inner-addon left-addon inner-addon-tall">
+                        <i class="fa fa-key fa-lg"></i>
                         <input class="form-control" type="password" value="11111122333" id="password2">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-md-3 control-label"></label>
-                    <div class="col-md-8">
-                        <input type="button" class="btn btn-primary" value="Save Changes" id="upload">
+                    <div class="col-md-11 ">
+                        <input type="button" class="btn btn-dark" value="Save Changes" id="upload" style="width: 43%">
                         <span></span>
-                        <input type="reset" class="btn btn-default" value="Cancel" id="cancelBtn">
+                        <input type="reset" class="btn btn-outline-dark" value="Cancel" id="cancelBtn" style="width: 43%">
                     </div>
+                </div>
+                <div  class="alert alert-danger alert-dismissable" id="alertBox" style="visibility:hidden">
+                    <a class="panel-close close" data-dismiss="alert">×</a>
+                    <i class="fa fa-coffee"></i>
+                    <p id="alertText" >This is an <strong>.alert</strong>. Use this to show important messages to the user.
+                    </p>
+
                 </div>
             </form>
         </div>
     </div>
 </div>
-<hr>
 <!--===============================================================================-->
-<div class="container">
-    <div class="col-md-9 personal-info">
+<div class="bottom-container" align="center" >
+
+    <div class="personal-info bottomSide">
         <h4>Delete profile</h4>
         <p>Are you sure you want to delete your profile?</p>
         <p>Enter your credentials below</p>
         <form class="form-group">
-        <input type="text" placeholder="Email" id="deleteEmail">
-        <input type="password" placeholder="Password" id="deletePassword">
+        <input  type="email"   style="width: 30%; height: 41px; border-radius: 3%; box-shadow: none; font-size: 21px;" placeholder="Email" id="deleteEmail">
+        <input type="password"  style="width: 30%; height: 41px; border-radius: 3%; box-shadow: none; font-size: 21px;" placeholder="Password" id="deletePassword">
         <input class="btn btn-danger" type="button" value="Delete My Profile" id="deleteProfileBtn">
         </form>
     </div>
 </div>
-<br>
-<a href="start.html">Start page</a>
-<a href="service%20page.html">Service Page</a>
-<a href="userProfileUpdate.html">Update profile</a>
-<a href="" onclick="logoutUser()">Log out</a>
-<script type="text/javascript" src="logout.js"></script>
-<hr>
+<!--<br>-->
+<!--<a href="start.html">Start page</a>-->
+<!--<a href="service%20page.html">Service Page</a>-->
+<!--<a href="userProfileUpdate.html">Update profile</a>-->
+<!--<a href="" onclick="logoutUser()">Log out</a>-->
+<!--<script type="text/javascript" src="logout.js"></script>-->
+<!--<hr>-->
 </body>
 </html>
