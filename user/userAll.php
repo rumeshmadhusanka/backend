@@ -95,7 +95,7 @@ class User implements IUser
                     array(':sid' => $sId), "*");
                 echo json_encode($result);
             } else {
-                $result = Database::read("service_station", "", array(), "s_id,s_name,s_city");
+                $result = Database::read("service_station", "", array(), "s_id,s_name,s_city,s_latitude,s_longitude");
                 echo json_encode($result);
             }
         } catch (Error $e) {
