@@ -3,11 +3,79 @@
 <head>
     <meta charset="UTF-8">
     <title>Service Req</title>
+    <link href='https://fonts.googleapis.com/css?family=Montserrat:700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
 </head>
 <body>
+<script src='http://cdnjs.cloudflare.com/ajax/libs/snap.svg/0.3.0/snap.svg-min.js'></script>
+<script  src="js/index.js"></script>
 <script type="text/javascript" src="../node_modules/jquery/dist/jquery.js"></script>
 <script type="text/javascript" src="servicePage.js"></script>
+<script type="text/javascript" src="javascript/table.js"></script>
+<script type="text/javascript" src="javascript/select.js"></script>
+<link rel="stylesheet" href="css/stationServicePage.css">
+<link rel="stylesheet" href="css/input.css">
+<link rel="stylesheet" href="css/navigation.css">
+<link rel="stylesheet" href="css/button.css">
+
+<div class="nav" >
+    <div class="logo">
+        <img src="images/NavLogo.png"  id="logoNav"  style="margin-top: 10px; margin-left: 10px">
+    </div>
+    <div class="navMenu">
+        <ul>
+            <li><a href="profile.html"><button class="btn type2">Home</button></a></li>
+            <li><a href="#"><button class="btn type2">About</button></a></li>
+<!--            <li><a href="#"><button class="btn type2">Contact</button></a></li>-->
+            <li><a href="start.html"><button class="btn type1">Logout</button></a></li>
+<!--            <li><a href="#"><button class="btn type1">Join Now</button></a></li>-->
+<!--            <li><a href="#"><button class="btn type1">Sign in</button></a></li>-->
+        </ul>
+    </div>
+</div>
+
+<a href="start.html">start page</a>
+<a href="profile.html">Profile</a>
+<a href="servicePage.html">Service Page</a>
+<a href="sales.html">Sales Page</a>
+<a href="" onclick="logout()">Logout</a>
+<script type="text/javascript" src="logout.js"></script>
+
 <div>
+    <div style="margin-top: 150px">
+        <div style="alignment: left">
+            <h3 style="alignment: left">Add new Service</h3>
+            <div style="margin-left: 10px">
+            <form id="addServiceForm">
+        </div>
+
+
+        <div class="input-group" style="margin-left: 20px">
+            <input type="text" id="inputField" required class="input-area" placeholder="Service Name" name="service_name">
+            <br>
+            <input style="margin-top: 10px" type="number" placeholder="Cost(LKR)" required class="input-area" name="cost">
+            <br>
+            <br>
+        </div>
+
+        <div style="margin-top: 65px; margin-left: 20px;">
+            <br>
+            <label class="sel" style="margin-left: 10px; color: white;">Availability</label>
+                <select style="margin-right: 10px" name="availability">
+                    <option value="TRUE">TRUE</option>
+                    <option value="FALSE">FALSE</option>
+                </select>
+            <br>
+
+        </form>
+            <br>
+        <input style="margin-left: 10px" type="button" class="button" value="Add Service" id="addServiceBtn">
+        </div>
+        </div>
+    </div>
+</div>
+<div>
+<div class="row">
     <h3>Pending service Table</h3>
     <table id="pendingTable">
         <tr>
@@ -23,7 +91,7 @@
 
     </table>
 </div>
-<div>
+<div class="row">
     <h3>History</h3>
     <table id="doneTable">
         <tr>
@@ -39,7 +107,7 @@
     </table>
 </div>
 
-<div>
+<div class="row">
     <h3>My Services(Edit)</h3>
     <table id="servicesTable">
         <tr>
@@ -49,24 +117,8 @@
         </tr>
     </table>
 </div>
-<div>
-    <h3>Add new Service</h3>
-    <form id="addServiceForm">
-        <input type="text" placeholder="Service Name" name="service_name">
-        <input type="number" placeholder="Cost(LKR)" name="cost">
-        <label>Availability</label>
-        <select name="availability">
-            <option value="TRUE">TRUE</option>
-            <option value="FALSE">FALSE</option>
-        </select>
-    </form>
-    <input type="button" value="Add Service" id="addServiceBtn">
+
 </div>
-<a href="start.html">start page</a>
-<a href="profile.html">Profile</a>
-<a href="servicePage.html">Service Page</a>
-<a href="sales.html">Sales Page</a>
-<a href="" onclick="logout()">Logout</a>
-<script type="text/javascript" src="logout.js"></script>
+
 </body>
 </html>
