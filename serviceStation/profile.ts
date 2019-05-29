@@ -85,6 +85,8 @@ async function updateData() {
         if (document.getElementById("password2").value.toString() == "11111122333") {
             password = "";//if the dummy password has not changed, send null
         }
+    }else {
+        alert("Error");
     }
     let form = new FormData();
     form.append("select", "UPDATE_SERVICE_STATION");
@@ -102,7 +104,10 @@ async function updateData() {
     let resText= await res.text();
     if (resText=="SUCCESS") {
         alert("Profile update successful");// todo replace alert
+    }else {
+        alert(resText);
     }
+
 
 
     function checkUserName(): boolean {
