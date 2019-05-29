@@ -51,8 +51,10 @@ function getGeolocation() {
         lngID = location.lng;
     });
 }
-
-getClickLocation(lat0=-12.3,lng0=131.044);
+let lati=document.getElementById("latitude").value;
+let longi=document.getElementById("longitude").value;
+setTimeout(getClickLocation(lat0=lati,lng0=longi),1000);
+//getClickLocation(lat0=lati,lng0=longi);
 function getGeolocation() {
     var myLatLng = {lat: -25.363, lng: 131.044};
 
@@ -101,7 +103,7 @@ function getClickLocation(lat0,lng0) {
         lngID = location.lng;
         console.log(latID + "," + lngID);
         //todo change with element id
-        document.getElementById("latInp").value = latID;
-        document.getElementById("longInp").value = lngID;
+        document.getElementById("latitude").value = latID;
+        document.getElementById("longitude").value = lngID;
     });
 }
