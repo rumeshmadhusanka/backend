@@ -51,9 +51,13 @@ function getGeolocation() {
         lngID = location.lng;
     });
 }
-let lati=document.getElementById("latitude").value;
-let longi=document.getElementById("longitude").value;
-setTimeout(getClickLocation(lat0=lati,lng0=longi),1000);
+
+setTimeout(initmap,1000);
+function initmap() {
+    let lati=document.getElementById("latitude").value;
+    let longi=document.getElementById("longitude").value;
+    getClickLocation(lat0=lati,lng0=longi)
+}
 //getClickLocation(lat0=lati,lng0=longi);
 function getGeolocation() {
     var myLatLng = {lat: -25.363, lng: 131.044};
